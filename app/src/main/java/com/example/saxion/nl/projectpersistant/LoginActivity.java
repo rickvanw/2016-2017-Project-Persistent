@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.saxion.nl.projectpersistant.model.Singleton;
+
 public class LoginActivity extends AppCompatActivity {
     private Singleton singleton = Singleton.getInstance();
 
