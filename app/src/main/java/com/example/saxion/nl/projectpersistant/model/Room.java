@@ -8,11 +8,11 @@ public class Room {
     private String roomName;
     private boolean available;
 
-    public Room(int roomId, int amountOfPeople, String roomName, boolean available) {
+    public Room(int roomId, int amountOfPeople, String roomName) {
+        available=true;
         this.roomId = roomId;
         this.amountOfPeople = amountOfPeople;
         this.roomName = roomName;
-        this.available = available;
     }
 
     public int getRoomId() {
