@@ -2,6 +2,7 @@ package com.example.saxion.nl.projectpersistant.model;
 
 import android.util.Log;
 
+import com.example.saxion.nl.projectpersistant.Classes.AdminGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
 
@@ -20,7 +21,7 @@ public class Singleton {
     private Singleton() {
         //DEBUG
         try {
-            this.loggedInUser = new NormaleGebruiker("Peter", "password");
+            this.loggedInUser = new AdminGebruiker("Peter", "password");
         }
         catch (Exception e) {
             Log.d("SINGLETON-CONSTRUCTOR", e.getMessage());
@@ -29,6 +30,7 @@ public class Singleton {
 
     /**
      * Geeft een kopie terug van de ingelogde gebruiker
+     * Indien NULL, betekent dat er niemand is ingelogd
      * @return
      */
     public Gebruiker getLoggedInUser() {

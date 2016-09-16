@@ -17,7 +17,6 @@ public abstract class Gebruiker {
     public Gebruiker(String username, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.username = username;
         this.password = hashPassword(password);
-        Log.d("G", this.password);
     }
 
     public String getUsername() {
