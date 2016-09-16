@@ -1,12 +1,9 @@
-package com.example.saxion.nl.projectpersistant;
+package com.example.saxion.nl.projectpersistant.model;
 
 import android.util.Log;
 
 import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
-
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Niels Laptop on 16-9-2016.
