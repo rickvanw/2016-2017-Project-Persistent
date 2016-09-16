@@ -46,7 +46,7 @@ public class Singleton {
     public boolean doAuthUser(String username, String password) {
         //Functie moet nog uit database ophalen
         try {
-            if (this.loggedInUser.checkAuth(username, password)) return true;
+            if (this.loggedInUser.isAuth(username, password)) return true;
             else return false;
         }
         catch (Exception e) {

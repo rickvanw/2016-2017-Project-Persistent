@@ -51,7 +51,7 @@ public abstract class Gebruiker {
      * @param password
      * @return
      */
-    public boolean checkAuth(String username, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public boolean isAuth(String username, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         if(this.username.equalsIgnoreCase(username) && this.password.equals( hashPassword(password) )) {
             return true;
         }
