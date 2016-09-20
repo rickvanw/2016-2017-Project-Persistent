@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchLogin(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, PerdurableActivity.class);
         startActivity(intent);
     }
 }

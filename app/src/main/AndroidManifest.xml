@@ -15,8 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RoomOverviewActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RoomOverviewActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".PerdurableActivity"
+        android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
     </application>
 
 </manifest>
