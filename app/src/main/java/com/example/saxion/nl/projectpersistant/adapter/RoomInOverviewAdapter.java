@@ -1,11 +1,14 @@
 package com.example.saxion.nl.projectpersistant.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.saxion.nl.projectpersistant.R;
@@ -31,6 +34,7 @@ public class RoomInOverviewAdapter extends ArrayAdapter<Room>{
         TextView tvRoomName = (TextView)convertView.findViewById(R.id.tvRoomNameInOverview);
         TextView tvRoomAvailability = (TextView)convertView.findViewById(R.id.tvRoomAvailabilityInOverview);
         Button button = (Button)convertView.findViewById(R.id.buttonReserveInOverview);
+        RelativeLayout rlRoomAvailability = (RelativeLayout)convertView.findViewById(R.id.rlRoomAvailabilityInOverview);
 
         Room room = getItem(position);
 
@@ -38,11 +42,14 @@ public class RoomInOverviewAdapter extends ArrayAdapter<Room>{
 
         if(room.isAvailable()){
             tvRoomAvailability.setText("Beschikbaar");
+            rlRoomAvailability.setBackgroundColor(Color.parseColor("#F9CA6B"));
+
         }else{
             tvRoomAvailability.setText("Niet beschikbaar");
+            rlRoomAvailability.setBackgroundColor(Color.parseColor("#EB7363"));
 
         }
-        button.setText("Reserveer");
+        button.setText("Bekijk");
 
         return convertView;
 
