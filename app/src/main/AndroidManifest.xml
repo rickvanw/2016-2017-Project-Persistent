@@ -19,6 +19,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".PerdurableActivity"
         android:screenOrientation="landscape"
+            android:resizeableActivity="true"
             android:configChanges="orientation|keyboardHidden">
         </activity>
     </application>
