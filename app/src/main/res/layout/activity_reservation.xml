@@ -58,7 +58,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="300dp"
-            android:layout_height="350dp"
+            android:layout_height="375dp"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/linearLayout"
             android:id="@+id/linearLayout2">
@@ -85,8 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etDescription"
-                android:textSize="40dp"
-                android:layout_marginTop="10dp" />
+                android:textSize="40dp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -104,7 +103,7 @@
             android:id="@+id/buttonReserve"
             android:layout_below="@+id/linearLayout2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentEnd="false"
             android:background="#463928"
             android:textColor="#E7E3D8" />
@@ -115,11 +114,10 @@
             android:inputType="time"
             android:ems="10"
             android:id="@+id/etTimeStart"
-            android:layout_marginTop="122dp"
             android:textSize="40dp"
-            android:layout_marginStart="63dp"
+            android:layout_marginTop="125dp"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/buttonReserve" />
+            android:layout_toStartOf="@+id/textView7" />
 
         <EditText
             android:layout_width="100dp"

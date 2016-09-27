@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RoomOverviewActivity" />
+        <activity android:name=".ReservationOverviewActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ReservationActivity" />
         <activity android:name=".PerdurableActivity"

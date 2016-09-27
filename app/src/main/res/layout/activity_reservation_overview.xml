@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.saxion.nl.projectpersistant.ReservationOverviewActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="    Mijn afspraken"
+        android:id="@+id/textView6"
+        android:textSize="40dp"
+        android:gravity="top"
+        android:background="#F9CA6B" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvReservationOverview"
+        android:layout_marginTop="80dp" />
+
+</RelativeLayout>

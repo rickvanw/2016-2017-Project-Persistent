@@ -1,28 +1,28 @@
 package com.example.saxion.nl.projectpersistant;
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.GridView;
+import android.widget.ListView;
 
+import com.example.saxion.nl.projectpersistant.adapter.ReservationInOverviewAdapter;
 import com.example.saxion.nl.projectpersistant.adapter.RoomInOverviewAdapter;
+import com.example.saxion.nl.projectpersistant.model.Reservation;
 import com.example.saxion.nl.projectpersistant.model.Room;
 
 import java.util.ArrayList;
 
-public class RoomOverviewActivity extends AppCompatActivity {
+public class ReservationOverviewActivity extends AppCompatActivity {
 
-    private GridView gridView;
-    private RoomInOverviewAdapter roomInOverviewAdapter;
+    private ListView lvReservationOverview;
+    private ReservationInOverviewAdapter reservationInOverviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_overview);
+        setContentView(R.layout.activity_reservation_overview);
         getSupportActionBar().hide();
 
         Window window = this.getWindow();
@@ -35,19 +35,18 @@ public class RoomOverviewActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
-        ArrayList<Room> rooms = new ArrayList<>();
+        ArrayList<Reservation> reservations = new ArrayList<>();
 
         // DUMMY DATA
         for (int i = 0; i < 10; i++) {
             Room room = new Room(i, 9, "Room: "+(i+1));
-            if(room.getRoomId()==2 || room.getRoomId()==6){
-                room.setAvailable(false);
-            }
-            rooms.add(room);
+
+            Reservation reservation = new Reservation(room,"11:15","11:45", "Sprint Planning", 7);
+            reservations.add(reservation);
         }
 
-        roomInOverviewAdapter = new RoomInOverviewAdapter(this,rooms);
-        gridView = (GridView)findViewById(R.id.gridView);
-        gridView.setAdapter(roomInOverviewAdapter);
+        reservationInOverviewAdapter = new ReservationInOverviewAdapter(this, reservations);
+        lvReservationOverview = (ListView) findViewById(R.id.lvReservationOverview);
+        lvReservationOverview.setAdapter(reservationInOverviewAdapter);
     }
 }
