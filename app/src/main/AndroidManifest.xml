@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".RoomOverviewActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".ReservationActivity" />
         <activity android:name=".PerdurableActivity"
         android:screenOrientation="landscape"
             android:resizeableActivity="true"

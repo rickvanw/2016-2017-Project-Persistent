@@ -11,13 +11,13 @@ public class Reservation {
 
     private Room room;
     private Gebruiker gebruiker;
-    private Timestamp startTime;
-    private Timestamp endTime;
+    private String startTime;
+    private String endTime;
             //= java.sql.Timestamp.valueOf("2007-09-23 10:10:10.0");
     private String description;
     private int amountOfPersons;
 
-    public Reservation(Room room, Timestamp startTime, Timestamp endTime, String description, int amountOfPersons) {
+    public Reservation(Room room, String startTime, String endTime, String description, int amountOfPersons) {
         this.gebruiker = Singleton.getInstance().getLoggedInUser();
         this.room = room;
         this.startTime = startTime;
@@ -30,11 +30,11 @@ public class Reservation {
         return room;
     }
 
-    public Timestamp getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public Timestamp getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
