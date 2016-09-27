@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.saxion.nl.projectpersistant.model.Reservation;
+import com.example.saxion.nl.projectpersistant.model.Room;
 
 import java.security.Timestamp;
 
@@ -16,6 +17,7 @@ import java.security.Timestamp;
 public class ReservationActivity extends AppCompatActivity {
 
     EditText date, timeStart, timeEnd, description, persons;
+    Room room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +30,32 @@ public class ReservationActivity extends AppCompatActivity {
         description = (EditText) findViewById(R.id.etDescription);
         persons = (EditText) findViewById(R.id.etPersons);
 
+
+        //DUMMY ROOM
+        room = new Room(10,6,"G10");
+
         Button buttonReserve = (Button) findViewById(R.id.buttonReserve);
         buttonReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Create date formats
+                // Date-time input
                 String datum = date.getText().toString();
                 String time1 = timeStart.getText().toString();
                 String time2 = timeEnd.getText().toString();
 
                 String beginTime = (datum + " " + time1);
-                System.out.println(beginTime);
-                // Create new reservation
+                String endTime = (datum + " " + time2);
+
+                // Description input
+                String descr = description.getText().toString();
+
+                // Persons input
+                int personAmount = Integer.parseInt(persons.getText().toString());
+
+                // Create reservation
+                Reservation reservation = new Reservation(room, beginTime, endTime, descr, personAmount);
+                System.out.println(reservation.toString());
 
 
             }
