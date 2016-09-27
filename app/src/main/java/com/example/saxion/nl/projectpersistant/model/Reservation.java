@@ -49,4 +49,16 @@ public class Reservation {
     public Gebruiker getGebruiker() {
         return gebruiker;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "room=" + room +
+                ", gebruiker=" + gebruiker +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", description='" + description + '\'' +
+                ", amountOfPersons=" + amountOfPersons +
+                '}';
+    }
 }

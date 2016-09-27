@@ -44,8 +44,8 @@ public class ReservationActivity extends AppCompatActivity {
                 String time1 = timeStart.getText().toString();
                 String time2 = timeEnd.getText().toString();
 
-                String beginTime = (datum + " " + time1);
-                String endTime = (datum + " " + time2);
+                String beginTime = (datum + " " + time1 + ":00");
+                String endTime = (datum + " " + time2 + ":00");
 
                 // Description input
                 String descr = description.getText().toString();
