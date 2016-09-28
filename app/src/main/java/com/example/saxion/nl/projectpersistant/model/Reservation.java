@@ -25,6 +25,9 @@ public class Reservation {
         this.description = description;
         this.amountOfPersons = amountOfPersons;
     }
+    public Reservation(String description) {
+        this.description = description;
+    }
 
     public Room getRoom() {
         return room;

@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 /**
  * Created by Niels Laptop on 16-9-2016.
@@ -17,6 +18,8 @@ import java.security.NoSuchAlgorithmException;
 public class Singleton {
     private Gebruiker loggedInUser;
     private final String REST_URL = "http://localhost";
+    ArrayList<Reservation> reservations;
+    ArrayList<Gebruiker> gebruikers;
 
     private static Singleton ourInstance = new Singleton();
 
@@ -28,14 +31,44 @@ public class Singleton {
     }
 
     private Singleton() {
+        // Dummy data
+        reservations = new ArrayList<>();
+        addReservation("meeting");
+        addReservation("sprint meeting");
+        addReservation("vergadering");
+        addReservation("daily standup");
+        addReservation("wappie");
+        addReservation("school");
+        addReservation("school");
 
-        //DEBUG
+
+
+        gebruikers = new ArrayList<>();
+
+
         try {
             this.loggedInUser = new AdminGebruiker("Peter", "password");
         }
         catch (Exception e) {
             Log.d("SINGLETON-CONSTRUCTOR", e.getMessage());
         }
+    }
+
+
+
+    public void addReservation(Reservation reservation) {
+        reservations.add(reservation);
+    }
+    public void addReservation(String description) {
+        Reservation reservation = new Reservation(description);
+        addReservation(reservation);
+    }
+
+
+
+
+    public void addGebruiker(Gebruiker gebruiker) {
+
     }
 
     /**
