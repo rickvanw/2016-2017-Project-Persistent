@@ -6,19 +6,29 @@ import com.example.saxion.nl.projectpersistant.Classes.AdminGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by Niels Laptop on 16-9-2016.
  */
 public class Singleton {
     private Gebruiker loggedInUser;
+    private final String REST_URL = "http://localhost";
 
     private static Singleton ourInstance = new Singleton();
 
     public static Singleton getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new Singleton();
+        }
         return ourInstance;
     }
 
     private Singleton() {
+
         //DEBUG
         try {
             this.loggedInUser = new AdminGebruiker("Peter", "password");
@@ -55,5 +65,18 @@ public class Singleton {
             Log.d("SINGLETON-DOAUTHUSER", e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * Geeft een SHA512 hash terug op basis van de ingevoerde String
+     * @param password
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     * @return String gehashte wachtwoord
+     */
+    public String hashPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        byte[] hash = md.digest( password.getBytes() );
+        return new String(hash, StandardCharsets.UTF_8);
     }
 }
