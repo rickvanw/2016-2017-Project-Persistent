@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Singleton {
     private Gebruiker loggedInUser;
-    public final String REST_URL = "http://localhost";
+    public final String REST_URL = "http://145.76.249.25:8080";
     ArrayList<Reservation> reservations;
     ArrayList<Gebruiker> gebruikers;
 
@@ -41,17 +41,7 @@ public class Singleton {
         addReservation("school");
         addReservation("school");
 
-
-
         gebruikers = new ArrayList<>();
-
-
-        try {
-            this.loggedInUser = new AdminGebruiker("Peter", "password");
-        }
-        catch (Exception e) {
-            Log.d("SINGLETON-CONSTRUCTOR", e.getMessage());
-        }
     }
 
 
@@ -71,7 +61,7 @@ public class Singleton {
 
 
     public void addGebruiker(Gebruiker gebruiker) {
-
+        this.loggedInUser = gebruiker;
     }
 
     /**

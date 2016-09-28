@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
@@ -60,14 +61,14 @@ public class Post extends AsyncTask<URL, Void, String> {
             }
             in.close();
 
-            Log.d("RESPONSE", sb.toString());
-            Log.d("CODE", connection.getResponseCode() + "");
+//            Log.d("RESPONSE", sb.toString());
+//            Log.d("CODE", connection.getResponseCode() + "");
 
             post_response = new JSONObject()
                              .put("http_status", response)
                              .put("server_response", sb.toString());
         }
-        catch (SocketTimeoutException ste) {
+        catch (SocketTimeoutException | ConnectException e) {
             //Vang hier de timeout af, en geef een JSON object terug in hetzelfde formaat
             try {
                 return new JSONObject()
