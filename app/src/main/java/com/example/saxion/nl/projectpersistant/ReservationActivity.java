@@ -28,6 +28,9 @@ public class ReservationActivity extends AppCompatActivity {
     Room room;
     Reservation reservation;
 
+    boolean editReservation = false;
+    int personAmount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,49 +45,64 @@ public class ReservationActivity extends AppCompatActivity {
         persons = (EditText) findViewById(R.id.etPersons);
 
         // If intentExtra != null, get the data, else move on
-        if( getIntent().getExtras() != null)
-        {
+        if(getIntent().getExtras() != null) {
+
+            editReservation = true;
             Intent intent = getIntent();
             int position = intent.getIntExtra(EXTRA_POSITION, -1);
             reservation = Singleton.getInstance().getReservations().get(position);
 
             description.setText(reservation.getDescription());
+            date.setText(reservation.getDate());
+            timeStart.setText(reservation.getStartTime());
+            timeEnd.setText(reservation.getEndTime());
+            persons.setText(String.valueOf(reservation.getAmountOfPersons()));
         }
 
+            //DUMMY ROOM
+            room = new Room(10,6,"G10");
 
-        //DUMMY ROOM
-        room = new Room(10,6,"G10");
+            Button buttonReserve = (Button) findViewById(R.id.buttonReserve);
+            buttonReserve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-        Button buttonReserve = (Button) findViewById(R.id.buttonReserve);
-        buttonReserve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                    // Date-time input
+                    String datum = date.getText().toString();
+                    String beginTime = timeStart.getText().toString();
+                    String endTime = timeEnd.getText().toString();
 
-                // Date-time input
-                String datum = date.getText().toString();
-                String time1 = timeStart.getText().toString();
-                String time2 = timeEnd.getText().toString();
+                    // Description input
+                    String descr = description.getText().toString();
 
-                String beginTime = (datum + " " + time1 + ":00");
-                String endTime = (datum + " " + time2 + ":00");
+                    // Persons input
+                    if(persons.getText() != null || persons.getText().toString() != "") {
+                        personAmount = Integer.parseInt(persons.getText().toString());
+                    }
 
-                // Description input
-                String descr = description.getText().toString();
+                    if(!editReservation) {
+                        // Create reservation, and add to list
+                        Reservation reservation = new Reservation(room, beginTime, endTime, datum, descr, personAmount);
+                        reservation.setDate(datum);
+                        singleton.addReservation(reservation);
+                    }
+                    else{
+                        // Set the new data
+                        reservation.setStartTime(beginTime);
+                        reservation.setEndTime(endTime);
+                        reservation.setDescription(descr);
+                        reservation.setAmountOfPersons(personAmount);
+                        reservation.setDate(datum);
+                    }
 
-                // Persons input
-                int personAmount = Integer.parseInt(persons.getText().toString());
-
-                // Create reservation, and add to list
-                Reservation reservation = new Reservation(room, beginTime, endTime, descr, personAmount);
-                singleton.addReservation(reservation);
-                System.out.println(reservation.toString());
-
-                Intent intent = new Intent(ReservationActivity.this, ReservationOverviewActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(ReservationActivity.this, ReservationOverviewActivity.class);
+                    startActivity(intent);
+                }
+            });
 
 
-            }
-        });
+
+
 
 
     }

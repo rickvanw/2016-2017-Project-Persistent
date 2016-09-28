@@ -32,16 +32,12 @@ public class Singleton {
 
     private Singleton() {
         // Dummy data
+        Room room = new Room(10, 4, "ruimte.1");
         reservations = new ArrayList<>();
-        addReservation("meeting");
-        addReservation("sprint meeting");
-        addReservation("vergadering");
-        addReservation("daily standup");
-        addReservation("wappie");
-        addReservation("school");
-        addReservation("school");
-
         gebruikers = new ArrayList<>();
+
+        Reservation reservation = new Reservation(room,"1200", "12:15", "21-07-1992", "vergadering", 8);
+        addReservation(reservation);
     }
 
 
