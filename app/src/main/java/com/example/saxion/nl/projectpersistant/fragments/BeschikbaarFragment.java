@@ -1,15 +1,24 @@
 package com.example.saxion.nl.projectpersistant.fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.saxion.nl.projectpersistant.R;
+import com.example.saxion.nl.projectpersistant.ReservationActivity;
+import com.example.saxion.nl.projectpersistant.model.Reservation;
 
 /**
  * Created by Gebruiker on 20-9-2016.
@@ -17,11 +26,27 @@ import com.example.saxion.nl.projectpersistant.R;
 public class BeschikbaarFragment extends Fragment {
     public enum STATUS { AVAILABLE, BUSY, ERROR}
     private TextView beschibaarheid;
+    private ImageView achtergrond;
+    private OnMenuClickListener listener;
+    BroadcastReceiver _broadcastReceiver;
+    private final SimpleDateFormat _sdfWatchTime = new SimpleDateFormat("HH:mm");
+    private TextView timelord;
+
+
     public BeschikbaarFragment() {
 
     }
 
+    public interface OnMenuClickListener {
+        void goToMenu();
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -29,12 +54,32 @@ public class BeschikbaarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.beschikbaarheid_fragment, container, false);
         beschibaarheid = (TextView) rootview.findViewById(R.id.Beschikbaar);
+        Button menu =(Button) rootview.findViewById(R.id.goToMenu);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //callback to communicatie between fragment and activity.
+                listener.goToMenu();
+                //Intent i = new Intent(this., ReservationActivity.class);
+            }
+        });
         init();
+
         return rootview;
     }
 
-    private void init() {
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            listener = (OnMenuClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+        }
+    }
 
+    private void init() {
         checkRoomStatus(STATUS.AVAILABLE);
     }
 
@@ -45,7 +90,7 @@ public class BeschikbaarFragment extends Fragment {
             Log.i("PER-ACT","room status logged as available");
                 //Kamer is beschikbaar dus geef op het scherm weer dat de room beschikbaar is
                 beschibaarheid.setText("Beschikbaar");
-                beschibaarheid.setTextColor(Color.GREEN);
+            ///    beschibaarheid.setTextColor(Color.GREEN);
                 break;
 
             case BUSY:
