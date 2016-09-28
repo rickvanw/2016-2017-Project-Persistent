@@ -1,5 +1,6 @@
 package com.example.saxion.nl.projectpersistant;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
@@ -9,13 +10,20 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.saxion.nl.projectpersistant.fragments.BeschikbaarFragment;
+import com.example.saxion.nl.projectpersistant.model.Reservation;
 
 /**
  * Pendurable("eeuwigdurend) is de stand van de app zoals die aan de muur wordt opgehangen.
  * Landscape is enforced.
  */
 
-public class PerdurableActivity extends FragmentActivity {
+public class PerdurableActivity extends FragmentActivity implements BeschikbaarFragment.OnMenuClickListener {
+    @Override
+    public void goToMenu() {
+        Intent i = new Intent(this, ReservationActivity.class);
+        startActivity(i);
+    }
+
     public enum STATUS { AVAILABLE, BUSY, ERROR}
     private BeschikbaarFragment fragment;
     @Override
