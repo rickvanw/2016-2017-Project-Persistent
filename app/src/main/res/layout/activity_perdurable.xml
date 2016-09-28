@@ -4,7 +4,12 @@
     android:layout_height="match_parent">
     <!-- "Fragment A" -->
     <fragment class="com.example.saxion.nl.projectpersistant.fragments.BeschikbaarFragment"
-        android:id="@+id/Beschikbaar_frag"
+        android:id="@+id/list_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <!-- "Fragment B" -->
+    <fragment class="com.example.saxion.nl.projectpersistant.fragments.AgendaFragment"
+        android:id="@+id/details_frag"
+        android:layout_width="80dp"
+        android:layout_height="match_parent" />
 </FrameLayout>
