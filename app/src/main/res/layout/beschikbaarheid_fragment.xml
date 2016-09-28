@@ -6,7 +6,6 @@
 
 
 
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -66,8 +65,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/geotag"
-        android:Width="30px"
-        android:Height="30px"
+        android:width="30px"
+        android:height="30px"
         android:layout_alignParentBottom="true"
         android:src="@drawable/geo"
         android:layout_alignEnd="@+id/Beschikbaar" />

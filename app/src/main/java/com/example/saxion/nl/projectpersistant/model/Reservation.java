@@ -13,17 +13,18 @@ public class Reservation {
     private Gebruiker gebruiker;
     private String startTime;
     private String endTime;
+    private String date;
     private String description;
     private int amountOfPersons;
-    private String date;
+
 
     public Reservation(Room room, String startTime, String endTime, String date, String description, int amountOfPersons) {
         this.room = room;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.date = date;
         this.description = description;
         this.amountOfPersons = amountOfPersons;
-        this.date = date;
     }
     public Reservation(String description) {
         this.description = description;
@@ -31,7 +32,6 @@ public class Reservation {
 
 
     // Getters
-
     public Room getRoom() {
         return room;
     }
@@ -56,13 +56,8 @@ public class Reservation {
         return amountOfPersons;
     }
 
-    public Gebruiker getGebruiker() {
-        return gebruiker;
-    }
-
 
     // Setters
-
     public void setRoom(Room room) {
         this.room = room;
     }
@@ -90,6 +85,7 @@ public class Reservation {
     public void setDate(String date) {
         this.date = date;
     }
+
 
 
     @Override
