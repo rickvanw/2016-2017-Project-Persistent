@@ -11,8 +11,10 @@ import android.widget.EditText;
 
 import com.example.saxion.nl.projectpersistant.model.Reservation;
 import com.example.saxion.nl.projectpersistant.model.Room;
+import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import java.security.Timestamp;
+import java.util.ArrayList;
 
 /**
  * Created by rubenassink on 20-09-16.
@@ -26,6 +28,8 @@ public class ReservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
+
+        final Singleton singleton = Singleton.getInstance();
 
         date = (EditText) findViewById(R.id.etDate);
         timeStart = (EditText) findViewById(R.id.etTimeStart);
@@ -56,8 +60,9 @@ public class ReservationActivity extends AppCompatActivity {
                 // Persons input
                 int personAmount = Integer.parseInt(persons.getText().toString());
 
-                // Create reservation
+                // Create reservation, and add to list
                 Reservation reservation = new Reservation(room, beginTime, endTime, descr, personAmount);
+                singleton.addReservation(reservation);
                 System.out.println(reservation.toString());
 
 

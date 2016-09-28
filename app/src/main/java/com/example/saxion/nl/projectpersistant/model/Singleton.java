@@ -64,6 +64,9 @@ public class Singleton {
         addReservation(reservation);
     }
 
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
 
 
 

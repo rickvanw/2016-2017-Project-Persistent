@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.saxion.nl.projectpersistant.R;
 import com.example.saxion.nl.projectpersistant.model.Reservation;
+import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import java.util.ArrayList;
 
@@ -17,8 +18,9 @@ import java.util.ArrayList;
  */
 public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
 
-    public ReservationInOverviewAdapter(Context context, ArrayList<Reservation> reservations) {
-        super(context,0, reservations);
+
+    public ReservationInOverviewAdapter(Context context) {
+        super(context,0, Singleton.getInstance().getReservations());
     }
 
     @Override
@@ -33,6 +35,9 @@ public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
         TextView tvStartTime = (TextView)convertView.findViewById(R.id.tvStartTimeInOverview);
 
         Reservation reservation = getItem(position);
+
+        tvDescription.setText(reservation.getDescription());
+        tvStartTime.setText(reservation.getStartTime());
 
         return convertView;
     }

@@ -35,17 +35,9 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
-        ArrayList<Reservation> reservations = new ArrayList<>();
 
-        // DUMMY DATA
-        for (int i = 0; i < 10; i++) {
-            Room room = new Room(i, 9, "Room: "+(i+1));
 
-            Reservation reservation = new Reservation(room,"11:15","11:45", "Sprint Planning", 7);
-            reservations.add(reservation);
-        }
-
-        reservationInOverviewAdapter = new ReservationInOverviewAdapter(this, reservations);
+        reservationInOverviewAdapter = new ReservationInOverviewAdapter(this);
         lvReservationOverview = (ListView) findViewById(R.id.lvReservationOverview);
         lvReservationOverview.setAdapter(reservationInOverviewAdapter);
     }
