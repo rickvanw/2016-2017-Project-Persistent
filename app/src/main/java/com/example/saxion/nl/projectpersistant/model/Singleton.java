@@ -38,6 +38,14 @@ public class Singleton {
 
         Reservation reservation = new Reservation(room,"1200", "12:15", "21-07-1992", "vergadering", 8);
         addReservation(reservation);
+        Reservation reservation1 = new Reservation(room,"1200", "12:15", "21-07-1992", "meeting", 8);
+        addReservation(reservation1);
+        Reservation reservation2 = new Reservation(room,"1200", "12:15", "21-07-1992", "interview", 8);
+        addReservation(reservation2);
+        Reservation reservation3 = new Reservation(room,"1200", "12:15", "21-07-1992", "lunch", 8);
+        addReservation(reservation3);
+        Reservation reservation4 = new Reservation(room,"1200", "12:15", "21-07-1992", "vergadering", 8);
+        addReservation(reservation4);
     }
 
 
