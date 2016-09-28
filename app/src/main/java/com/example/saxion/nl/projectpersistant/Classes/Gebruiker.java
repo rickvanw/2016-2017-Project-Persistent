@@ -10,13 +10,18 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by Niels Laptop on 16-9-2016.
  * Wachtwoord is SHA512 encrypt ivm veiligheid
+ *
+ * Gebruikersnaam moet ZONDER %-teken!!!!
  */
 public abstract class Gebruiker {
-    private String username, password;
+    private String username, password, session_id;
+    private int type;
 
-    public Gebruiker(String username, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public Gebruiker(String username, String password, int type, String session_id) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.username = username;
         this.password = hashPassword(password);
+        this.type = type;
+        this.session_id = session_id;
     }
 
     public String getUsername() {
@@ -29,6 +34,14 @@ public abstract class Gebruiker {
 
     public void setPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.password = hashPassword(password);
+    }
+
+    public String getSession_id() {
+        return session_id;
+    }
+
+    public int getType() {
+        return type;
     }
 
     /**

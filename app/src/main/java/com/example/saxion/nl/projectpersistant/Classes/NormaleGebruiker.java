@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Niels Laptop on 16-9-2016.
  */
 public class NormaleGebruiker extends Gebruiker {
-    public NormaleGebruiker(String username, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        super(username, password);
+    public NormaleGebruiker(String username, String password, int type, String session_id) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        super(username, password, type, session_id);
     }
 }
