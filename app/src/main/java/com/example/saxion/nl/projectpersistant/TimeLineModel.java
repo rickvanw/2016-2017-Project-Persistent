@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class TimeLineModel implements Serializable{
     private String name;
     private int age;
-
+    private int time;
     public String getName() {
         return name;
     }
