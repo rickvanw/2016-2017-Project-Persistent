@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                     if(status == 401) showAlert("Foutmelding", "Ongeldige gebruikersgegevens!");
                     if(status == 500) showAlert("Server fout", "Interne server fout, neem contact op met de beheerder.\n\nCode 500");
                     if(status >= 200 && status <= 200) {
-                        singleton.
                         Log.d("INGELOGD", "JA");
                     }
                 }

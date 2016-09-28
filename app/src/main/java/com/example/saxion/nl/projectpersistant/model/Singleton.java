@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Singleton {
     private Gebruiker loggedInUser;
-    private final String REST_URL = "http://localhost";
+    public final String REST_URL = "http://localhost";
     ArrayList<Reservation> reservations;
     ArrayList<Gebruiker> gebruikers;
 
