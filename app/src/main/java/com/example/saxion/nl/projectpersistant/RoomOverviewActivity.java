@@ -33,7 +33,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         // finally change the color
-        window.setStatusBarColor(Color.parseColor("#B1A893"));
+        window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
         ArrayList<Room> rooms = new ArrayList<>();
 

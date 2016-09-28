@@ -13,7 +13,7 @@ public class Reservation {
     private Gebruiker gebruiker;
     private String startTime;
     private String endTime;
-            //= java.sql.Timestamp.valueOf("2007-09-23 10:10:10.0");
+            //= java.sql.Timestamp.valueOf("2007-09-23 10:10:00);
     private String description;
     private int amountOfPersons;
 
@@ -24,6 +24,9 @@ public class Reservation {
         this.endTime = endTime;
         this.description = description;
         this.amountOfPersons = amountOfPersons;
+    }
+    public Reservation(String description) {
+        this.description = description;
     }
 
     public Room getRoom() {

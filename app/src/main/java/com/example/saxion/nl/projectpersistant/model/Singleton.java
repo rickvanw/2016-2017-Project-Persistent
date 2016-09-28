@@ -7,27 +7,71 @@ import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
 
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 /**
  * Created by Niels Laptop on 16-9-2016.
  */
 public class Singleton {
     private Gebruiker loggedInUser;
-    public final String REST_URL = "http://145.76.249.25:8080";
+    private final String REST_URL = "http://localhost";
+    ArrayList<Reservation> reservations;
+    ArrayList<Gebruiker> gebruikers;
 
     private static Singleton ourInstance = new Singleton();
 
     public static Singleton getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new Singleton();
+        }
         return ourInstance;
     }
 
     private Singleton() {
+        // Dummy data
+        reservations = new ArrayList<>();
+        addReservation("meeting");
+        addReservation("sprint meeting");
+        addReservation("vergadering");
+        addReservation("daily standup");
+        addReservation("wappie");
+        addReservation("school");
+        addReservation("school");
+
+
+
+        gebruikers = new ArrayList<>();
+
+
+        try {
+            this.loggedInUser = new AdminGebruiker("Peter", "password");
+        }
+        catch (Exception e) {
+            Log.d("SINGLETON-CONSTRUCTOR", e.getMessage());
+        }
+    }
+
+
+
+    public void addReservation(Reservation reservation) {
+        reservations.add(reservation);
+    }
+    public void addReservation(String description) {
+        Reservation reservation = new Reservation(description);
+        addReservation(reservation);
+    }
+
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
+
+
+    public void addGebruiker(Gebruiker gebruiker) {
+
     }
 
     /**
@@ -57,5 +101,18 @@ public class Singleton {
         }
 
         return sb.toString().toUpperCase();
+    }
+
+    /**
+     * Geeft een SHA512 hash terug op basis van de ingevoerde String
+     * @param password
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     * @return String gehashte wachtwoord
+     */
+    public String hashPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        byte[] hash = md.digest( password.getBytes() );
+        return new String(hash, StandardCharsets.UTF_8);
     }
 }

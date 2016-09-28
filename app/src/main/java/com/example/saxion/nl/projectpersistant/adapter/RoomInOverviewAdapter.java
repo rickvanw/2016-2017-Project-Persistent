@@ -42,15 +42,13 @@ public class RoomInOverviewAdapter extends ArrayAdapter<Room>{
 
         if(room.isAvailable()){
             tvRoomAvailability.setText("Beschikbaar");
-            rlRoomAvailability.setBackgroundColor(Color.parseColor("#F9CA6B"));
+            rlRoomAvailability.setBackgroundColor(Color.parseColor("#9FB4BF"));
 
         }else{
             tvRoomAvailability.setText("Niet beschikbaar");
             rlRoomAvailability.setBackgroundColor(Color.parseColor("#EB7363"));
 
         }
-        button.setText("Bekijk");
-
         return convertView;
 
     }

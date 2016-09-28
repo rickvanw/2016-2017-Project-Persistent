@@ -16,13 +16,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".RoomOverviewActivity" />
+        <activity android:name=".ReservationOverviewActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ReservationActivity" />
-        <activity android:name=".PerdurableActivity"
-        android:screenOrientation="landscape"
+        <activity
+            android:name=".PerdurableActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:resizeableActivity="true"
-            android:configChanges="orientation|keyboardHidden">
-        </activity>
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".TimelineActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
