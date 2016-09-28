@@ -1,5 +1,6 @@
 package com.example.saxion.nl.projectpersistant;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,11 @@ import java.util.ArrayList;
  */
 public class ReservationActivity extends AppCompatActivity {
 
+    public static final String EXTRA_POSITION = "position";
+
     EditText date, timeStart, timeEnd, description, persons;
     Room room;
+    Reservation reservation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,16 @@ public class ReservationActivity extends AppCompatActivity {
         timeEnd = (EditText) findViewById(R.id.etTimeEnd);
         description = (EditText) findViewById(R.id.etDescription);
         persons = (EditText) findViewById(R.id.etPersons);
+
+        // If intentExtra != null, get the data, else move on
+        if( getIntent().getExtras() != null)
+        {
+            Intent intent = getIntent();
+            int position = intent.getIntExtra(EXTRA_POSITION, -1);
+            reservation = Singleton.getInstance().getReservations().get(position);
+
+            description.setText(reservation.getDescription());
+        }
 
 
         //DUMMY ROOM
@@ -64,6 +78,9 @@ public class ReservationActivity extends AppCompatActivity {
                 Reservation reservation = new Reservation(room, beginTime, endTime, descr, personAmount);
                 singleton.addReservation(reservation);
                 System.out.println(reservation.toString());
+
+                Intent intent = new Intent(ReservationActivity.this, ReservationOverviewActivity.class);
+                startActivity(intent);
 
 
             }

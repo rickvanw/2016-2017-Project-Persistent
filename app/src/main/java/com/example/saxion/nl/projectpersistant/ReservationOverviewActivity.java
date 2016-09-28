@@ -1,10 +1,13 @@
 package com.example.saxion.nl.projectpersistant;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.saxion.nl.projectpersistant.adapter.ReservationInOverviewAdapter;
@@ -18,6 +21,8 @@ public class ReservationOverviewActivity extends AppCompatActivity {
 
     private ListView lvReservationOverview;
     private ReservationInOverviewAdapter reservationInOverviewAdapter;
+
+    public static final String EXTRA_POSITION = "position";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +40,17 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
-
-
         reservationInOverviewAdapter = new ReservationInOverviewAdapter(this);
         lvReservationOverview = (ListView) findViewById(R.id.lvReservationOverview);
         lvReservationOverview.setAdapter(reservationInOverviewAdapter);
+        lvReservationOverview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(ReservationOverviewActivity.this, ReservationActivity.class);
+                intent.putExtra(EXTRA_POSITION, position);
+                startActivity(intent);
+            }
+        });
     }
 }
