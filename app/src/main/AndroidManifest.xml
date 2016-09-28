@@ -24,7 +24,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:resizeableActivity="true"
             android:screenOrientation="landscape"></activity>
-        <activity android:name=".TimeLineActivity"></activity>
+        <activity android:name=".TimelineActivity"></activity>
     </application>
 
 </manifest>
