@@ -102,17 +102,4 @@ public class Singleton {
 
         return sb.toString().toUpperCase();
     }
-
-    /**
-     * Geeft een SHA512 hash terug op basis van de ingevoerde String
-     * @param password
-     * @throws NoSuchAlgorithmException
-     * @throws UnsupportedEncodingException
-     * @return String gehashte wachtwoord
-     */
-    public String hashPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] hash = md.digest( password.getBytes() );
-        return new String(hash, StandardCharsets.UTF_8);
-    }
 }
