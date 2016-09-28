@@ -13,7 +13,7 @@ import com.vipul.hp_hp.timelineview.TimelineView;
 public class TimeLineViewHolder extends RecyclerView.ViewHolder {
     public TextView name;
     public  TimelineView mTimelineView;
-
+    //fwa
     public TimeLineViewHolder(View itemView, int viewType) {
         super(itemView);
         name = (TextView) itemView.findViewById(R.id.tx_name);
