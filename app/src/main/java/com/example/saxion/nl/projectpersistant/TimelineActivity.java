@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by HP-HP on 05-12-2015.
  */
-public class TimeLineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
