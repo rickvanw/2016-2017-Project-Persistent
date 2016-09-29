@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.saxion.nl.projectpersistant">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,9 +25,9 @@
             android:name=".PerdurableActivity"
             android:configChanges="orientation|keyboardHidden"
             android:resizeableActivity="true"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".TimelineActivity"></activity>
+            android:screenOrientation="landscape" />
+        <activity android:name=".TimelineActivity" />
+        <activity android:name=".OverViewActivity"></activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

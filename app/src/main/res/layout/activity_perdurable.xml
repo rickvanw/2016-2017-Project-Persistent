@@ -9,9 +9,10 @@
         android:id="@+id/list_frag"
         android:layout_width="751dp"
         android:layout_height="match_parent"/>
-    <!-- "Fragment B" -->
-    <fragment class="com.example.saxion.nl.projectpersistant.fragments.AgendaFragment"
-        android:id="@+id/details_frag"
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
         android:layout_width="276dp"
         android:layout_height="match_parent" />
 </LinearLayout>
