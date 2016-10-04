@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.saxion.nl.projectpersistant.RoomControlActivity"
+    android:background="#F9CA6B"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Administrator ruimte beheer  "
+        android:id="@+id/textView13"
+        android:textSize="40dp"
+        android:gravity="top"
+        android:background="#F9CA6B"
+        android:paddingLeft="40dp" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Reserveringen"
+        android:id="@+id/buttonAdminReservations"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Ruimte toevoegen"
+        android:id="@+id/buttonAdminAddRoom"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Ruimte verwijderen"
+        android:id="@+id/buttonAdminRemoveRoom"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Ruimte aanpassen"
+        android:id="@+id/buttonAdminChangeRoom"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Monitoring"
+        android:id="@+id/buttonAdminRoomMonitoring"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+</LinearLayout
+   >

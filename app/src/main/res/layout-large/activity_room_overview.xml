@@ -9,11 +9,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="    Overzicht Kamers"
+        android:text="Overzicht Kamers"
         android:id="@+id/textView8"
         android:textSize="40dp"
         android:gravity="top"
-        android:background="#F9CA6B" />
+        android:background="#F9CA6B"
+        android:paddingLeft="40dp" />
 
     <GridView
         android:layout_width="fill_parent"

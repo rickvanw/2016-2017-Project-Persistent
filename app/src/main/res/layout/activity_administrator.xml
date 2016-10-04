@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.saxion.nl.projectpersistant.AdministratorActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#F9CA6B">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Administrator Menu    "
+        android:id="@+id/textView11"
+        android:textSize="40dp"
+        android:gravity="top"
+        android:background="#F9CA6B"
+        android:paddingLeft="40dp" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Plaats reservering"
+        android:id="@+id/buttonAdminReserve"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Mijn reserveringen"
+        android:id="@+id/buttonAdminMyReservations"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Zoek ruimtes"
+        android:id="@+id/buttonAdminRoomOverview"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Mijn meldingen"
+        android:id="@+id/buttonAdminNotifications"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Gebruikers beheer"
+        android:id="@+id/buttonAdminUserControl"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:text="Ruimtes beheer"
+        android:id="@+id/buttonAdminRoomControl"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:backgroundTint="#463928"
+        android:textColor="#ffffff" />
+</LinearLayout>
