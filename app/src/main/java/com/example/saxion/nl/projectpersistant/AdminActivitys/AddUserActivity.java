@@ -26,6 +26,8 @@ public class AddUserActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
+
+
     }
 
 }
