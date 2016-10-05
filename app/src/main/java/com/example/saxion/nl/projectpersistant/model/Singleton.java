@@ -36,15 +36,15 @@ public class Singleton {
         reservations = new ArrayList<>();
         gebruikers = new ArrayList<>();
 
-        Reservation reservation = new Reservation(room,"1200", "12:15", "21-07-1992", "vergadering", 8);
+        Reservation reservation = new Reservation(room,"12:00", "12:15", "21-07-1992", "vergadering", 8);
         addReservation(reservation);
-        Reservation reservation1 = new Reservation(room,"1200", "12:15", "21-07-1992", "meeting", 8);
+        Reservation reservation1 = new Reservation(room,"12:15", "12:15", "21-07-1992", "meeting", 8);
         addReservation(reservation1);
-        Reservation reservation2 = new Reservation(room,"1200", "12:15", "21-07-1992", "interview", 8);
+        Reservation reservation2 = new Reservation(room,"12:45", "12:15", "21-07-1992", "interview", 8);
         addReservation(reservation2);
-        Reservation reservation3 = new Reservation(room,"1200", "12:15", "21-07-1992", "lunch", 8);
+        Reservation reservation3 = new Reservation(room,"13:00", "12:15", "21-07-1992", "lunch", 8);
         addReservation(reservation3);
-        Reservation reservation4 = new Reservation(room,"1200", "12:15", "21-07-1992", "vergadering", 8);
+        Reservation reservation4 = new Reservation(room,"15:00", "12:15", "21-07-1992", "vergadering", 8);
         addReservation(reservation4);
     }
 
@@ -62,7 +62,9 @@ public class Singleton {
         return reservations;
     }
 
-
+    public void removeReservation(int position) {
+        reservations.remove(position);
+    }
 
     public void addGebruiker(Gebruiker gebruiker) {
         this.loggedInUser = gebruiker;

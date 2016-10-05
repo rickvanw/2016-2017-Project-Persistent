@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.transition.CircularPropagation;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.example.saxion.nl.projectpersistant.R;
 import com.example.saxion.nl.projectpersistant.ReservationActivity;
 import com.example.saxion.nl.projectpersistant.model.Reservation;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 /**
  * Created by Gebruiker on 20-9-2016.
@@ -26,11 +29,10 @@ import com.example.saxion.nl.projectpersistant.model.Reservation;
 public class BeschikbaarFragment extends Fragment {
     public enum STATUS { AVAILABLE, BUSY, ERROR}
     private TextView beschibaarheid;
-    private ImageView achtergrond;
+    private CircularProgressBar progressbar;
     private OnMenuClickListener listener;
-    BroadcastReceiver _broadcastReceiver;
-    private final SimpleDateFormat _sdfWatchTime = new SimpleDateFormat("HH:mm");
-    private TextView timelord;
+    private Button menu;
+
 
 
     public BeschikbaarFragment() {
@@ -53,18 +55,25 @@ public class BeschikbaarFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.beschikbaarheid_fragment, container, false);
+
         beschibaarheid = (TextView) rootview.findViewById(R.id.Beschikbaar);
-        Button menu =(Button) rootview.findViewById(R.id.goToMenu);
+        menu =(Button) rootview.findViewById(R.id.goToMenu);
+
+        progressbar = (CircularProgressBar) rootview.findViewById(R.id.progressBar);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //callback to communicatie between fragment and activity.
-                listener.goToMenu();
+//                listener.goToMenu();
+                int animationDuration = 5000; // 2500ms = 2,5s
+                progressbar.setProgressWithAnimation(65, animationDuration); // Default duration = 1500ms
+
                 //Intent i = new Intent(this., ReservationActivity.class);
             }
         });
         init();
+
 
         return rootview;
     }

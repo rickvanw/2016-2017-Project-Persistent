@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class ReservationActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "position";
-
     EditText date, timeStart, timeEnd, description, persons;
+    Button buttonReserve, buttonDelete;
     Room room;
     Reservation reservation;
 
@@ -49,7 +49,7 @@ public class ReservationActivity extends AppCompatActivity {
 
             editReservation = true;
             Intent intent = getIntent();
-            int position = intent.getIntExtra(EXTRA_POSITION, -1);
+            final int position = intent.getIntExtra(EXTRA_POSITION, -1);
             reservation = Singleton.getInstance().getReservations().get(position);
 
             description.setText(reservation.getDescription());
@@ -57,12 +57,13 @@ public class ReservationActivity extends AppCompatActivity {
             timeStart.setText(reservation.getStartTime());
             timeEnd.setText(reservation.getEndTime());
             persons.setText(String.valueOf(reservation.getAmountOfPersons()));
+
         }
 
             //DUMMY ROOM
             room = new Room(10,6,"G10");
 
-            Button buttonReserve = (Button) findViewById(R.id.buttonReserve);
+            buttonReserve = (Button) findViewById(R.id.buttonReserve);
             buttonReserve.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -99,17 +100,5 @@ public class ReservationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
-
-
-
-
-
     }
-
-
-
-
-
-
 }
