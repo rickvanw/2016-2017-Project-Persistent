@@ -1,10 +1,15 @@
-package com.example.saxion.nl.projectpersistant;
+package com.example.saxion.nl.projectpersistant.AdminActivitys;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+
+import com.example.saxion.nl.projectpersistant.R;
 
 public class UserControlActivity extends AppCompatActivity {
 
@@ -24,5 +29,17 @@ public class UserControlActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
+        Button buttonAdminAddUser = (Button)findViewById(R.id.buttonAdminAddUser);
+        Button buttonAdminRemoveUser = (Button)findViewById(R.id.buttonAdminRemoveUser);
+        Button buttonAdminChangeUser = (Button)findViewById(R.id.buttonAdminChangeUser);
+        Button buttonAdminUserMonitoring = (Button)findViewById(R.id.buttonAdminUserMonitoring);
+
+        buttonAdminAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserControlActivity.this, AddUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

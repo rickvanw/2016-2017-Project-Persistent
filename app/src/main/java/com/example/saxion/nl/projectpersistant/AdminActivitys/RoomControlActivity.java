@@ -1,10 +1,13 @@
-package com.example.saxion.nl.projectpersistant;
+package com.example.saxion.nl.projectpersistant.AdminActivitys;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+
+import com.example.saxion.nl.projectpersistant.R;
 
 public class RoomControlActivity extends AppCompatActivity {
 
@@ -23,6 +26,12 @@ public class RoomControlActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
+
+        Button buttonAdminReservations = (Button)findViewById(R.id.buttonAdminReservations);
+        Button buttonAdminAddRoom = (Button)findViewById(R.id.buttonAdminAddRoom);
+        Button buttonAdminRemoveRoom = (Button)findViewById(R.id.buttonAdminRemoveRoom);
+        Button buttonAdminChangeRoom = (Button)findViewById(R.id.buttonAdminChangeRoom);
+        Button buttonAdminRoomMonitoring = (Button)findViewById(R.id.buttonAdminRoomMonitoring);
 
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.saxion.nl.projectpersistant.RoomControlActivity"
+    tools:context=".AdminActivitys.RoomControlActivity"
     android:background="#F9CA6B"
     android:orientation="vertical"
     android:gravity="center_horizontal">
@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="Administrator ruimte beheer  "
+        android:text="Administrator ruimtes beheer  "
         android:id="@+id/textView13"
         android:textSize="40dp"
         android:gravity="top"

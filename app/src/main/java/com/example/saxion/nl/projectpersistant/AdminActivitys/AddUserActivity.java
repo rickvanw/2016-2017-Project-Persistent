@@ -1,19 +1,19 @@
-package com.example.saxion.nl.projectpersistant;
+package com.example.saxion.nl.projectpersistant.AdminActivitys;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
-public class AdministratorActivity extends AppCompatActivity {
+import com.example.saxion.nl.projectpersistant.R;
 
+public class AddUserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_administrator);
+        setContentView(R.layout.activity_user_edit);
         getSupportActionBar().hide();
 
         Window window = this.getWindow();
@@ -26,12 +26,6 @@ public class AdministratorActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
-        Button buttonAdminReserve = (Button)findViewById(R.id.buttonAdminReserve);
-        Button buttonAdminMyReservations = (Button)findViewById(R.id.buttonAdminMyReservations);
-        Button buttonAdminRoomOverview = (Button)findViewById(R.id.buttonAdminRoomOverview);
-        Button buttonAdminNotifications = (Button)findViewById(R.id.buttonAdminNotifications);
-        Button buttonAdminUserControl = (Button)findViewById(R.id.buttonAdminUserControl);
-        Button buttonAdminRoomControl = (Button)findViewById(R.id.buttonAdminRoomControl);
-
     }
+
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.saxion.nl.projectpersistant.AdministratorActivity"
+    tools:context=".AdminActivitys.AdministratorActivity"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="#F9CA6B">
