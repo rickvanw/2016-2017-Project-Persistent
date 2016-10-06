@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminActivitys.AddUserActivity"
+    android:background="#F9CA6B"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Administrator: gebruiker toevoegen"
+        android:id="@+id/textView14"
+        android:textSize="40dp"
+        android:gravity="top"
+        android:background="#F9CA6B"
+        android:paddingLeft="40dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50dp"
+        android:background="#B1A893">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="430dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="100dp"
+                android:paddingRight="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Gebruikersnaam"
+                    android:id="@+id/tvNewUserUsername"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_gravity="left"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Wachtwoord"
+                    android:id="@+id/textView15"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="40dp"
+                    android:gravity="left|center_vertical"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Wachtwoord controle"
+                    android:id="@+id/textView16"
+                    android:textSize="30dp"
+                    android:layout_gravity="left"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="40dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Type"
+                    android:id="@+id/textView18"
+                    android:textSize="30dp"
+                    android:gravity="center"
+                    android:layout_gravity="left" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/etNewUserUsername"
+                    android:layout_marginBottom="40dp"
+                    android:layout_gravity="left"
+                    android:textSize="30dp"
+                    android:background="#E7E3D8"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:inputType="text"
+                    android:maxLines="1"/>
+
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:id="@+id/etNewUserPassword"
+                    android:layout_gravity="left|center_horizontal"
+                    android:layout_marginBottom="40dp"
+                    android:textSize="30dp"
+                    android:background="#E7E3D8"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp" />
+
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:id="@+id/etNewUserPasswordCheck"
+                    android:layout_gravity="left"
+                    android:textSize="30dp"
+                    android:background="#E7E3D8"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_marginBottom="40dp" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:transitionGroup="false">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="Normaal"
+                        android:id="@+id/rbNewUserNormal"
+                        android:checked="false"
+                        android:textSize="25dp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="Power"
+                        android:id="@+id/rbNewUserPower"
+                        android:checked="false"
+                        android:layout_marginLeft="30dp"
+                        android:textSize="25dp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="Admin"
+                        android:id="@+id/rbNewUserAdmin"
+                        android:checked="false"
+                        android:layout_marginLeft="30dp"
+                        android:textSize="25dp" />
+                </RadioGroup>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Doorgaan"
+            android:id="@+id/buttonNewUser"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="false"
+            android:background="#463928"
+            android:textColor="#E7E3D8"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+</LinearLayout>
