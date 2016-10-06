@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         switch (user_type) {
                             case 0: { //Normale gebruiker
                                 g = new NormaleGebruiker(server_username, password, user_type, session);
+                                singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, UserMenu.class);
                                 startActivity(intent);
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             case 1: { //Power gebruiker
                                 g = new PowerGebruiker(server_username, password, user_type, session);
+                                singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, UserMenu.class);
                                 startActivity(intent);
@@ -91,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             case 2: { //Administrator
                                 g = new AdminGebruiker(server_username, password, user_type, session);
+                                singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, AdministratorActivity.class);
                                 startActivity(intent);
@@ -100,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                             //Onbekende waarde is laagste gebruiker
                             default: {
                                 g = new NormaleGebruiker(server_username, password, user_type, session);
+                                singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, UserMenu.class);
                                 startActivity(intent);
