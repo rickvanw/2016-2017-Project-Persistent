@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Singleton {
     private Gebruiker loggedInUser;
-    public final String REST_URL = "http://145.76.249.25:8080";
+    public final String REST_URL = "http://roomfinder.053chan.org";
     ArrayList<Reservation> reservations;
     ArrayList<Gebruiker> gebruikers;
 

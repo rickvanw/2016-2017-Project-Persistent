@@ -16,6 +16,7 @@ import com.example.saxion.nl.projectpersistant.Classes.AdminGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.PowerGebruiker;
+import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Post;
 import com.example.saxion.nl.projectpersistant.model.Singleton;
 
@@ -25,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
     private Singleton singleton = Singleton.getInstance();
@@ -59,11 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(object.has("http_status")) {
                     int status = object.getInt("http_status");
 
-                    if(status == 901) showAlert("Foutmelding", object.getJSONObject("server_response").getString("error_message"));
-                    if(status == 400) showAlert("Server fout", "Interne server fout, neem contact op met de beheerder.\n\nCode 400");
-                    if(status == 401) showAlert("Foutmelding", "Ongeldige gebruikersgegevens!");
-                    if(status == 500) showAlert("Server fout", "Interne server fout, neem contact op met de beheerder.\n\nCode 500");
-                    if(status >= 200 && status <= 200) {
+                    if(status >= 200 && status <= 299) {
                         //Server response ophalen
                         JSONObject server_response = new JSONObject( object.getString("server_response") );
 
@@ -97,6 +95,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         //Vervolgens naar andere Activity gaan (nog doen)
                         Log.d("LOGIN_ACTIVITY", "Gebruiker is ingelogd op app");
+                    }
+                    else {
+                        HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
+                        showAlert(error_map.get("titel"), error_map.get("bericht"));
                     }
                 }
             }

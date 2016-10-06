@@ -16,20 +16,10 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 
 /**
- * Created by Niels Laptop on 28-9-2016.
- *
- * Class voor het sturen van POST requests
- * Geeft het volgende JSON object terug:
- *      { http_status = 123, server_response = [ { SERVER RESPONSE JSON OBJECT } ] }
- *
- * HTTP FOUTCODES
- * Kan de volgende foutcodes teruggeven voor INTERN gebruik
- * 901  =   Server timeout, geen verbinding met REST API kunnen maken
- *
- * Indien je NULL terugkrijgt heb je een probleem
+ * Created by Niels Laptop on 6-10-2016.
  */
 
-public class Post extends AsyncTask<URL, Void, String> {
+public class Put extends AsyncTask<URL, Void, String> {
     private Singleton singleton = Singleton.getInstance();
 
     @Override
@@ -51,7 +41,7 @@ public class Post extends AsyncTask<URL, Void, String> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(1500);
             connection.setReadTimeout(1500);
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("GET");
             connection.setDoOutput(false);
             if(!session_id.isEmpty()) connection.setRequestProperty("X-Auth-Token", singleton.getLoggedInUser().getSession_id());
             connection.connect();
@@ -70,12 +60,12 @@ public class Post extends AsyncTask<URL, Void, String> {
             }
             in.close();
 
-//            Log.d("RESPONSE", sb.toString());
-//            Log.d("CODE", connection.getResponseCode() + "");
+            Log.d("RESPONSE", sb.toString());
+            Log.d("CODE", connection.getResponseCode() + "");
 
             post_response = new JSONObject()
-                             .put("http_status", response)
-                             .put("server_response", sb.toString());
+                    .put("http_status", response)
+                    .put("server_response", sb.toString());
         }
         catch (SocketTimeoutException | ConnectException e) {
             //Vang hier de timeout af, en geef een JSON object terug in hetzelfde formaat

@@ -37,7 +37,8 @@ public abstract class Gebruiker {
     }
 
     public String getSession_id() {
-        return session_id;
+        if(this.session_id == null) return new String();
+        else return session_id;
     }
 
     public int getType() {
