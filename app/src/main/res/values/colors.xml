@@ -4,5 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="ovgeel">#F9CA6B</color>
+    <color name="ovblauw">#5077CF</color>
+    <color name="ovpaars">#6A6B96</color>
+    <color name="ovrood">#EB7363</color>
     <color name="ovbruin">#463928</color>
 </resources>

@@ -30,8 +30,9 @@
         <activity android:name=".OverViewActivity" />
         <activity android:name=".AdminActivitys.AdministratorActivity" />
         <activity android:name=".AdminActivitys.UserControlActivity" />
-        <activity android:name=".AdminActivitys.RoomControlActivity"></activity>
-        <activity android:name=".AdminActivitys.AddUserActivity"></activity>
+        <activity android:name=".AdminActivitys.RoomControlActivity" />
+        <activity android:name=".AdminActivitys.AddUserActivity" />
+        <activity android:name=".UserMenu"></activity>
     </application>
 
 </manifest>
