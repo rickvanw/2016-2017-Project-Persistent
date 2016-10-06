@@ -3,6 +3,7 @@ package com.example.saxion.nl.projectpersistant;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.DialogPreference;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.saxion.nl.projectpersistant.AdminActivitys.AdministratorActivity;
 import com.example.saxion.nl.projectpersistant.Classes.AdminGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
@@ -75,20 +77,32 @@ public class LoginActivity extends AppCompatActivity {
                         switch (user_type) {
                             case 0: { //Normale gebruiker
                                 g = new NormaleGebruiker(server_username, password, user_type, session);
+
+                                Intent intent = new Intent(this, UserMenu.class);
+                                startActivity(intent);
                                 break;
                             }
                             case 1: { //Power gebruiker
                                 g = new PowerGebruiker(server_username, password, user_type, session);
+
+                                Intent intent = new Intent(this, UserMenu.class);
+                                startActivity(intent);
                                 break;
                             }
                             case 2: { //Administrator
                                 g = new AdminGebruiker(server_username, password, user_type, session);
+
+                                Intent intent = new Intent(this, AdministratorActivity.class);
+                                startActivity(intent);
                                 break;
                             }
 
                             //Onbekende waarde is laagste gebruiker
                             default: {
                                 g = new NormaleGebruiker(server_username, password, user_type, session);
+
+                                Intent intent = new Intent(this, UserMenu.class);
+                                startActivity(intent);
                                 break;
                             }
                         }
