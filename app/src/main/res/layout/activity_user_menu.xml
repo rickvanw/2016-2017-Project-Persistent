@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.saxion.nl.projectpersistant.UserMenu"
+    android:weightSum="2">>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/ovblauw"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:onClick="plaatsReservering">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservering plaatsen"
+                android:id="@+id/US_reserveringplaatsen_tv"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textIsSelectable="false"
+                android:textSize="35dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:background="@color/ovgeel"
+            android:layout_height="0dp"
+            android:onClick="gaNaarMeldingen">>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mijn Meldingen"
+                android:id="@+id/textView19"
+                android:textIsSelectable="false"
+                android:textSize="35dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@color/ovrood"
+        android:layout_height="match_parent"
+        android:onClick="zoekRuimte">>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zoek ruimte"
+                android:id="@+id/textView20"
+                android:textIsSelectable="false"
+                android:textSize="35dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:background="@color/ovpaars"
+            android:onClick="gaNaarOverzicht"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reserveringen overzicht"
+                android:id="@+id/textView21"
+                android:textIsSelectable="false"
+                android:textSize="35dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
