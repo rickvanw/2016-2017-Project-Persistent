@@ -2,25 +2,15 @@ package com.example.saxion.nl.projectpersistant.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.BroadcastReceiver;
-import android.content.Intent;
 import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
-import android.media.Image;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.transition.CircularPropagation;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.saxion.nl.projectpersistant.R;
-import com.example.saxion.nl.projectpersistant.ReservationActivity;
-import com.example.saxion.nl.projectpersistant.model.Reservation;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 /**
@@ -32,7 +22,6 @@ public class BeschikbaarFragment extends Fragment {
     private CircularProgressBar progressbar;
     private OnMenuClickListener listener;
     private Button menu;
-
 
 
     public BeschikbaarFragment() {

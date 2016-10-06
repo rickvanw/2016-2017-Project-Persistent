@@ -9,15 +9,25 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
 
+import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
+import com.example.saxion.nl.projectpersistant.Networking.Get;
 import com.example.saxion.nl.projectpersistant.adapter.RoomInOverviewAdapter;
 import com.example.saxion.nl.projectpersistant.model.Room;
+import com.example.saxion.nl.projectpersistant.model.Singleton;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RoomOverviewActivity extends AppCompatActivity {
 
     private GridView gridView;
     private RoomInOverviewAdapter roomInOverviewAdapter;
+    private Singleton singleton = Singleton.getInstance();
+    private ArrayList<Room> roomList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +44,43 @@ public class RoomOverviewActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
+        
 
-        ArrayList<Room> rooms = new ArrayList<>();
+        // get the rooms
+        try {
+            String output = new Get().execute(
+                    new URL(singleton.REST_URL + "/api/rooms")
+            ).get();
 
-        // DUMMY DATA
-        for (int i = 0; i < 10; i++) {
-            Room room = new Room(i, 9, "Room: "+(i+1));
-            if(room.getRoomId()==2 || room.getRoomId()==6){
-                room.setAvailable(false);
+            JSONObject object = new JSONObject(output);
+            if(object.has("http_status")) {
+                //HTTP status code ophalen
+                int status = object.getInt("http_status");
+
+                //Alles met status 200 is goed
+                if(status >= 200 && status <= 200) {
+                    //Haal hier de server response in JSON op
+                    JSONArray server_response = new JSONArray( object.getString("server_response") );
+
+                    roomList = new ArrayList<Room>();
+                    for(int i = 0; i < server_response.length(); i++){
+                        roomList.add(new Room(server_response.getJSONObject(i).getInt("room_id"), server_response.getJSONObject(i).getInt("no_of_people"),server_response.getJSONObject(i).getString("room_name")));
+                    }
+                }
+                else {
+                    //Vang de fouten af
+                    HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
+                    String titel = error_map.get("titel");
+                    String bericht = error_map.get("bericht");
+                }
             }
-            rooms.add(room);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
-        roomInOverviewAdapter = new RoomInOverviewAdapter(this,rooms);
+
+        roomInOverviewAdapter = new RoomInOverviewAdapter(this,roomList);
         gridView = (GridView)findViewById(R.id.gridView);
         gridView.setAdapter(roomInOverviewAdapter);
     }
