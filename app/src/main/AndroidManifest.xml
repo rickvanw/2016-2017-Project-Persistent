@@ -32,7 +32,8 @@
         <activity android:name=".AdminActivitys.UserControlActivity" />
         <activity android:name=".AdminActivitys.RoomControlActivity" />
         <activity android:name=".AdminActivitys.AddUserActivity" />
-        <activity android:name=".UserMenu"></activity>
+        <activity android:name=".UserMenu" />
+        <activity android:name=".SignIn"></activity>
     </application>
 
 </manifest>
