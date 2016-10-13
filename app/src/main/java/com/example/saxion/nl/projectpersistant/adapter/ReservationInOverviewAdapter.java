@@ -36,6 +36,8 @@ public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
 
         Reservation reservation = getItem(position);
 
+        
+
         tvDescription.setText(reservation.getDescription());
         tvStartTime.setText(reservation.getStartTime());
 

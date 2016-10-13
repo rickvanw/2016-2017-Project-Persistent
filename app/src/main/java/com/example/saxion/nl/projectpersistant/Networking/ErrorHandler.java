@@ -27,6 +27,10 @@ public class ErrorHandler {
             returnMap.put("titel", "Foutmelding");
             returnMap.put("bericht", "Ongeldige gebruikersgegevens");
         }
+        if (http_code == 409) {
+            returnMap.put("titel", "Foutmelding");
+            returnMap.put("bericht", "Gebruiker bestaat al");
+        }
         if (http_code == 500) {
             returnMap.put("titel", "Server fout");
             returnMap.put("bericht", "Interne server fout, neem contact op met de beheerder.\n" +

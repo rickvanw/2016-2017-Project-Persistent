@@ -12,19 +12,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Post;
 import com.example.saxion.nl.projectpersistant.R;
+import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class AddUserActivity extends AppCompatActivity {
 
     private EditText etUsername, etPassword, etPasswordCheck;
     private RadioButton rbTypeNormal, rbTypePower, rbTypeAdmin;
     private Button buttonNewUser;
-    private int Type;
+    private int type;
+    private Singleton singleton = Singleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,24 +88,60 @@ public class AddUserActivity extends AppCompatActivity {
                         // Determine type
                         if (rbTypePower.isChecked()) {
                             // Type Power user
-                            Type = 1;
+                            type = 1;
                         } else if (rbTypeAdmin.isChecked()) {
                             // Type Administrator
-                            Type = 2;
+                            type = 2;
                         } else {
                             // Type Normal user
-                            Type = 0;
+                            type = 0;
                         }
                         // TEST
-                        System.out.println("TYPE = " + Type);
+                        System.out.println("TYPE = " + type);
 
                         String username = etUsername.getText().toString();
+                        String password = "";
+
+                        try {
+                            password = singleton.hashPassword(etPassword.getText().toString());
+                        }catch(Exception e){}
+
 
                         // TEST
                         System.out.println("USERNAME = " + username);
 
                         // TODO gebruiker in database zetten, hiervoor plaatste system outs weghalen (api gebruikers database nog niet bestaand)
+                        try{
+                            //URL url = new URL(singleton.REST_URL + "/api/users?username="+username+"&password="+password+"&type="+type);
 
+                           // new Post().execute(url).get();
+
+                           // succesAlert("Gebruiker aangemaakt", "Nog een gebruiker aanmaken?");
+
+
+                                String output =
+                                        new Post().execute(
+                                                new URL(singleton.REST_URL + "/api/users?username="+username+"&password="+password+"&type="+type)
+                                        ).get();
+
+                                JSONObject object = new JSONObject(output);
+
+                                if(object.has("http_status")) {
+                                    int status = object.getInt("http_status");
+
+                                    System.out.println(""+status);
+
+                                    if (status >= 200 && status <= 299) {
+                                        //Server response ophalen
+
+                                        succesAlert("Gebruiker aangemaakt", "Nog een gebruiker aanmaken?");
+                                    }else{
+                                        HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
+                                        showAlert(error_map.get("titel"), error_map.get("bericht"));}
+                                }
+
+
+                        }catch (Exception e){}
                     }
                 }
             }
@@ -114,6 +155,27 @@ public class AddUserActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         /* niks doen */
+                    }
+                })
+                .show();
+    }
+
+    public void succesAlert(String titel, String bericht) {
+        new AlertDialog.Builder(AddUserActivity.this)
+                .setTitle(titel)
+                .setMessage(bericht)
+                .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        etUsername.setText("");
+                        etUsername.requestFocus();
+                        etPassword.setText("");
+                        etPasswordCheck.setText("");
+                        rbTypeNormal.setChecked(true);
+                    }
+                })
+                .setNegativeButton("Nee", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
                     }
                 })
                 .show();
