@@ -108,8 +108,9 @@ public class UserOverviewActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("resultttt");
-        gridView.invalidate();
-
+        Intent refresh = new Intent(this, UserOverviewActivity.class);
+        startActivity(refresh);
+        this.finish();
     }
+
 }

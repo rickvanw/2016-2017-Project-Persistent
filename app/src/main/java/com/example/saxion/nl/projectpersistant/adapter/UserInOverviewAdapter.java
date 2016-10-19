@@ -183,4 +183,8 @@ public class UserInOverviewAdapter extends ArrayAdapter {
                 .show();
     }
 
+    public void refresh(){
+        this.notifyDataSetChanged();
+    }
+
 }
