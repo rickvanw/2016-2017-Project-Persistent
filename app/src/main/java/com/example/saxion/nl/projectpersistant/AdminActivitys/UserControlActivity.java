@@ -30,14 +30,21 @@ public class UserControlActivity extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
         Button buttonAdminAddUser = (Button)findViewById(R.id.buttonAdminAddUser);
-        Button buttonAdminRemoveUser = (Button)findViewById(R.id.buttonAdminRemoveUser);
-        Button buttonAdminChangeUser = (Button)findViewById(R.id.buttonAdminChangeUser);
+        Button buttonAdminEditUser = (Button)findViewById(R.id.buttonAdminEditUser);
         Button buttonAdminUserMonitoring = (Button)findViewById(R.id.buttonAdminUserMonitoring);
 
         buttonAdminAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserControlActivity.this, AddUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonAdminEditUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserControlActivity.this, UserOverviewActivity.class);
                 startActivity(intent);
             }
         });

@@ -18,7 +18,7 @@
     <GridView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/gridView"
+        android:id="@+id/gridViewRoomOverview"
         android:numColumns="1"
         android:overScrollMode="never"
         android:layout_marginTop="40dp" />

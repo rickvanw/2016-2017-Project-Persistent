@@ -34,6 +34,7 @@
         <activity android:name=".AdminActivitys.AddUserActivity" />
         <activity android:name=".UserMenu" />
         <activity android:name=".SignIn"></activity>
+        <activity android:name=".AdminActivitys.UserOverviewActivity"></activity>
     </application>
 
 </manifest>

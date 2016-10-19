@@ -15,7 +15,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class Gebruiker {
     private String username, password, session_id;
-    private int type;
+    // database id only added and used when changing or removing a user
+    private int type, databaseId;
 
     public Gebruiker(String username, String password, int type, String session_id) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.username = username;
@@ -72,4 +73,15 @@ public abstract class Gebruiker {
             return false;
         }
     }
+
+    public void setDatabaseUserId(int databaseId){
+        this.databaseId = databaseId;
+
+    }
+
+    public int getDatabaseUserId(){
+        return databaseId;
+
+    }
+
 }

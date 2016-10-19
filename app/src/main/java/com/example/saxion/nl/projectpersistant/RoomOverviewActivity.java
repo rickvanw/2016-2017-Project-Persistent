@@ -62,7 +62,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
                     //Haal hier de server response in JSON op
                     JSONArray server_response = new JSONArray( object.getString("server_response") );
 
-                    roomList = new ArrayList<Room>();
+                    roomList = new ArrayList<>();
                     for(int i = 0; i < server_response.length(); i++){
                         roomList.add(new Room(server_response.getJSONObject(i).getInt("room_id"), server_response.getJSONObject(i).getInt("no_of_people"),server_response.getJSONObject(i).getString("room_name")));
                     }
@@ -74,14 +74,14 @@ public class RoomOverviewActivity extends AppCompatActivity {
                     String bericht = error_map.get("bericht");
                 }
             }
+
+            roomInOverviewAdapter = new RoomInOverviewAdapter(this,roomList);
+            gridView = (GridView)findViewById(R.id.gridViewRoomOverview);
+            gridView.setAdapter(roomInOverviewAdapter);
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        roomInOverviewAdapter = new RoomInOverviewAdapter(this,roomList);
-        gridView = (GridView)findViewById(R.id.gridView);
-        gridView.setAdapter(roomInOverviewAdapter);
     }
 }

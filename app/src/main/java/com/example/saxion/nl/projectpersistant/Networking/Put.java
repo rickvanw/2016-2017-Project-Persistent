@@ -41,7 +41,7 @@ public class Put extends AsyncTask<URL, Void, String> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(1500);
             connection.setReadTimeout(1500);
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod("PUT");
             connection.setDoOutput(false);
             if(!session_id.isEmpty()) connection.setRequestProperty("X-Auth-Token", singleton.getLoggedInUser().getSession_id());
             connection.connect();
