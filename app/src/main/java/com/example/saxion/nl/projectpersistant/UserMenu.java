@@ -28,7 +28,7 @@ public class UserMenu extends AppCompatActivity {
     }
     //TOODO activity bestaat nog niet
     public void gaNaarMeldingen(View View){
-        Intent i = new Intent(UserMenu.this, ReservationActivity.class);
+        Intent i = new Intent(UserMenu.this, PerdurableActivity.class);
         startActivity(i);
     }
 

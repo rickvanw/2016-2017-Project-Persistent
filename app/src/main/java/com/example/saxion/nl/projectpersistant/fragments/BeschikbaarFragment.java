@@ -25,18 +25,15 @@ public class BeschikbaarFragment extends Fragment {
 
 
     public BeschikbaarFragment() {
-
     }
 
     public interface OnMenuClickListener {
         void goToMenu();
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -62,7 +59,6 @@ public class BeschikbaarFragment extends Fragment {
             }
         });
         init();
-
 
         return rootview;
     }

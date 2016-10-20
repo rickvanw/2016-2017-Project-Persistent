@@ -49,6 +49,7 @@ public class ReservationActivity extends AppCompatActivity {
 
         final Singleton singleton = Singleton.getInstance();
 
+
         date = (EditText) findViewById(R.id.etDate);
         timeStart = (EditText) findViewById(R.id.etTimeStart);
         timeEnd = (EditText) findViewById(R.id.etTimeEnd);

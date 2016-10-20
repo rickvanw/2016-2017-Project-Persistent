@@ -21,7 +21,9 @@ public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
 
     public ReservationInOverviewAdapter(Context context) {
         super(context,0, Singleton.getInstance().getReservations());
+
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
