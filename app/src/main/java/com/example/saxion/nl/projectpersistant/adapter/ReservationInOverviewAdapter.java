@@ -19,11 +19,10 @@ import java.util.ArrayList;
 public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
 
 
-    public ReservationInOverviewAdapter(Context context) {
-        super(context,0, Singleton.getInstance().getReservations());
+    public ReservationInOverviewAdapter(Context context, ArrayList<Reservation> reservations) {
+        super(context,0, reservations);
 
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

@@ -14,12 +14,15 @@ import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Get;
 import com.example.saxion.nl.projectpersistant.adapter.ReservationInOverviewAdapter;
+import com.example.saxion.nl.projectpersistant.model.Reservation;
+import com.example.saxion.nl.projectpersistant.model.Room;
 import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -29,6 +32,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
     private ReservationInOverviewAdapter reservationInOverviewAdapter;
     private Singleton singleton;
     public static final String EXTRA_POSITION = "position";
+    ArrayList<Reservation> reservations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +52,12 @@ public class ReservationOverviewActivity extends AppCompatActivity {
 
         singleton = Singleton.getInstance();
         Gebruiker user = singleton.getLoggedInUser();
-        int user_id = user.getDatabaseUserId();
+        Room room = new Room(1,8,"room");
 
         // Get the reservations for the specific user
         try {
             String output = new Get().execute(
-                    new URL(singleton.REST_URL + "/api/reservations/user/" + user_id)
+                    new URL(singleton.REST_URL + "/api/reservations/user")
             ).get();
 
             JSONObject object = new JSONObject(output);
@@ -66,6 +70,14 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                     //Haal hier de server response in JSON op
                     JSONArray server_response = new JSONArray( object.getString("server_response") );
                     System.out.println(server_response.toString());
+
+                    reservations = new ArrayList<>();
+                    for(int i = 0; i < server_response.length(); i++){
+                        reservations.add(new Reservation(room,server_response.getJSONObject(i).getString("start_date").substring(11,16),        //start time
+                                                            "12:30",server_response.getJSONObject(i).getString("end_date").substring(11,16),    // end time
+                                                            server_response.getJSONObject(i).getString("description").substring(0,35) + "...",  // description
+                                                            0));    // amount of people
+                    }
                 }
                 else {
                     //Vang de fouten af
@@ -81,7 +93,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         }
 
 
-        reservationInOverviewAdapter = new ReservationInOverviewAdapter(this);
+        reservationInOverviewAdapter = new ReservationInOverviewAdapter(this, reservations);
         lvReservationOverview = (ListView) findViewById(R.id.lvReservationOverview);
         lvReservationOverview.setAdapter(reservationInOverviewAdapter);
         lvReservationOverview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
