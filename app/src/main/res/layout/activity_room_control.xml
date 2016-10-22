@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         android:text="Reserveringen"
         android:id="@+id/buttonAdminReservations"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="160dp"
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:paddingLeft="40dp"
@@ -45,19 +45,8 @@
     <Button
         android:layout_width="500dp"
         android:layout_height="50dp"
-        android:text="Ruimte verwijderen"
-        android:id="@+id/buttonAdminRemoveRoom"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="40dp"
-        android:backgroundTint="#463928"
-        android:textColor="#ffffff" />
-
-    <Button
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:text="Ruimte aanpassen"
-        android:id="@+id/buttonAdminChangeRoom"
+        android:text="Ruimte aanpassen / verwijderen"
+        android:id="@+id/buttonAdminEditRoom"
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:paddingLeft="40dp"

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp">
+
+    <LinearLayout
+        android:background="#9FB4BF"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/linearLayout3"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ruimte naam"
+            android:id="@+id/tvRoomNameInOverviewAdmin"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/tvRoomAmountOfPeopleInOverviewAdmin"
+            android:textSize="20dp"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal" >
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="Wijzig"
+                android:id="@+id/buttonRoomChange"
+                android:backgroundTint="#463928"
+                android:textColor="#E7E3D8"
+                android:layout_marginRight="10dp" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="Verwijder"
+                android:id="@+id/buttonRoomRemove"
+                android:backgroundTint="#463928"
+                android:textColor="#E7E3D8"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

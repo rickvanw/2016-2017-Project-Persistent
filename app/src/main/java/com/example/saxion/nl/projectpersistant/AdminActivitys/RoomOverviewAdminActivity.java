@@ -8,14 +8,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
 
-import com.example.saxion.nl.projectpersistant.Classes.AdminGebruiker;
-import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
-import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
-import com.example.saxion.nl.projectpersistant.Classes.PowerGebruiker;
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Get;
 import com.example.saxion.nl.projectpersistant.R;
-import com.example.saxion.nl.projectpersistant.adapter.UserInOverviewAdapter;
+import com.example.saxion.nl.projectpersistant.adapter.RoomInOverviewAdminAdapter;
+import com.example.saxion.nl.projectpersistant.model.Room;
 import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import org.json.JSONArray;
@@ -25,18 +22,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserOverviewActivity extends AppCompatActivity {
+public class RoomOverviewAdminActivity extends AppCompatActivity {
 
     private GridView gridView;
-    private UserInOverviewAdapter userInOverviewAdapter;
-    private ArrayList<Gebruiker> userList;
+    private RoomInOverviewAdminAdapter roomInOverviewAdminAdapter;
     private Singleton singleton = Singleton.getInstance();
-
+    private ArrayList<Room> roomList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_overview);
+        setContentView(R.layout.activity_room_in_overview_admin);
         getSupportActionBar().hide();
 
         Window window = this.getWindow();
@@ -49,10 +45,10 @@ public class UserOverviewActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
+        // get the rooms
         try {
-
             String output = new Get().execute(
-                    new URL(singleton.REST_URL + "/api/users")
+                    new URL(singleton.REST_URL + "/api/rooms")
             ).get();
 
             JSONObject object = new JSONObject(output);
@@ -60,34 +56,17 @@ public class UserOverviewActivity extends AppCompatActivity {
                 //HTTP status code ophalen
                 int status = object.getInt("http_status");
 
-                userList = new ArrayList<>();
-
                 //Alles met status 200 is goed
                 if(status >= 200 && status <= 200) {
                     //Haal hier de server response in JSON op
                     JSONArray server_response = new JSONArray( object.getString("server_response") );
 
+                    roomList = new ArrayList<>();
                     for(int i = 0; i < server_response.length(); i++){
+                        Room room = new Room(server_response.getJSONObject(i).getInt("room_id"), server_response.getJSONObject(i).getInt("no_of_people"),server_response.getJSONObject(i).getString("room_name"));
+                        room.setDatabaseId(server_response.getJSONObject(i).getInt("room_id"));
 
-                        int type = server_response.getJSONObject(i).getInt("type");
-                        Gebruiker user;
-                        switch(type){
-                            case 0:
-                                user = new NormaleGebruiker(server_response.getJSONObject(i).getString("username"),"nopassword", server_response.getJSONObject(i).getInt("type"),"nosession");
-                                break;
-                            case 1:
-                                user = new PowerGebruiker(server_response.getJSONObject(i).getString("username"),"nopassword", server_response.getJSONObject(i).getInt("type"),"nosession");
-                                break;
-                            case 2:
-                                user = new AdminGebruiker(server_response.getJSONObject(i).getString("username"),"nopassword", server_response.getJSONObject(i).getInt("type"),"nosession");
-                                break;
-                            default:
-                                user = new NormaleGebruiker(server_response.getJSONObject(i).getString("username"),"nopassword", server_response.getJSONObject(i).getInt("type"),"nosession");
-                                break;
-                        }
-
-                        user.setDatabaseUserId(server_response.getJSONObject(i).getInt("user_id"));
-                        userList.add(user);
+                        roomList.add(room);
                     }
                 }
                 else {
@@ -96,18 +75,19 @@ public class UserOverviewActivity extends AppCompatActivity {
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
                 }
+
             }
 
-        } catch(Exception e){}
+        } catch (Exception e) {}
 
-        userInOverviewAdapter = new UserInOverviewAdapter(this, userList);
-        gridView = (GridView) findViewById(R.id.gridViewUserOverview);
-        gridView.setAdapter(userInOverviewAdapter);
+        roomInOverviewAdminAdapter = new RoomInOverviewAdminAdapter(this,roomList);
+        gridView = (GridView)findViewById(R.id.gridViewRoomOverviewAdmin);
+        gridView.setAdapter(roomInOverviewAdminAdapter);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Intent refresh = new Intent(this, UserOverviewActivity.class);
+        Intent refresh = new Intent(this, RoomOverviewAdminActivity.class);
         startActivity(refresh);
         this.finish();
     }

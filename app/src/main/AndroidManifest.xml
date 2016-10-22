@@ -33,8 +33,10 @@
         <activity android:name=".AdminActivitys.RoomControlActivity" />
         <activity android:name=".AdminActivitys.AddUserActivity" />
         <activity android:name=".UserMenu" />
-        <activity android:name=".SignIn"></activity>
-        <activity android:name=".AdminActivitys.UserOverviewActivity"></activity>
+        <activity android:name=".SignIn" />
+        <activity android:name=".AdminActivitys.UserOverviewActivity" />
+        <activity android:name=".AdminActivitys.AddRoomActivity" />
+        <activity android:name=".AdminActivitys.RoomOverviewAdminActivity"></activity>
     </application>
 
 </manifest>

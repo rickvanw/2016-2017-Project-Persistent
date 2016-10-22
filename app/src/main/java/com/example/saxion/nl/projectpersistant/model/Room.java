@@ -4,7 +4,7 @@ package com.example.saxion.nl.projectpersistant.model;
  * Created by rickv on 16-9-2016.
  */
 public class Room {
-    private int roomId, amountOfPeople;
+    private int roomId, amountOfPeople, databaseId;
     private String roomName;
     private boolean available;
 
@@ -41,5 +41,13 @@ public class Room {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+
+    public void setDatabaseId(int databaseId) {
+        this.databaseId = databaseId;
+    }
+
+    public int getDatabaseId() {
+        return databaseId;
     }
 }
