@@ -75,10 +75,10 @@ public class ReservationOverviewActivity extends AppCompatActivity {
 
                     reservations = new ArrayList<>();
                     for(int i = 0; i < server_response.length(); i++){
-                        reservations.add(new Reservation(room,server_response.getJSONObject(i).getString("start_date").substring(11,16),        //start time
-                                                            "12:30",server_response.getJSONObject(i).getString("end_date").substring(11,16),    // end time
-                                                            server_response.getJSONObject(i).getString("description").substring(0,35) + "...",  // description
-                                                            0));    // amount of people
+                        reservations.add(new Reservation(room,server_response.getJSONObject(i).getString("start_date").substring(11,16),
+                                                            "12:30",server_response.getJSONObject(i).getString("end_date").substring(11,16),
+                                                            server_response.getJSONObject(i).getString("description"),
+                                                            0));
                     }
                 }
                 else {
@@ -94,7 +94,6 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
-
 
         reservationInOverviewAdapter = new ReservationInOverviewAdapter(this, reservations);
         lvReservationOverview = (ListView) findViewById(R.id.lvReservationOverview);

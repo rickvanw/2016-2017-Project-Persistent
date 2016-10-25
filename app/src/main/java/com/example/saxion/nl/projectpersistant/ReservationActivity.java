@@ -10,23 +10,32 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
+import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
+import com.example.saxion.nl.projectpersistant.Networking.Post;
 import com.example.saxion.nl.projectpersistant.model.Reservation;
 import com.example.saxion.nl.projectpersistant.model.Room;
 import com.example.saxion.nl.projectpersistant.model.Singleton;
 
+import org.json.JSONObject;
+
+import java.net.URL;
+import java.net.URLEncoder;
 import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by rubenassink on 20-09-16.
  */
 public class ReservationActivity extends AppCompatActivity {
 
-    public static final String EXTRA_POSITION = "position";
+    public static final String EXTRA_ROOM_ID = "roomid";
     EditText date, timeStart, timeEnd, description, persons;
-    Button buttonReserve, buttonDelete;
+    Button buttonReserve;
     Room room;
     Reservation reservation;
+    int room_id;
 
     boolean editReservation = false;
     int personAmount = 0;
@@ -61,19 +70,13 @@ public class ReservationActivity extends AppCompatActivity {
 
             editReservation = true;
             Intent intent = getIntent();
-            final int position = intent.getIntExtra(EXTRA_POSITION, -1);
-            reservation = Singleton.getInstance().getReservations().get(position);
-
-            description.setText(reservation.getDescription());
-            date.setText(reservation.getDate());
-            timeStart.setText(reservation.getStartTime());
-            timeEnd.setText(reservation.getEndTime());
-            persons.setText(String.valueOf(reservation.getAmountOfPersons()));
-
+            room_id = intent.getIntExtra(EXTRA_ROOM_ID, -1);
+            System.out.println("roomId: " + room_id );
         }
 
-            //DUMMY ROOM
-            room = new Room(10,6,"G10");
+        Gebruiker user = Singleton.getInstance().getLoggedInUser();
+        final int user_id = user.getNormalUserId();
+
 
             buttonReserve = (Button) findViewById(R.id.buttonReserve);
             buttonReserve.setOnClickListener(new View.OnClickListener() {
@@ -81,9 +84,11 @@ public class ReservationActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
                     // Date-time input
-                    String datum = date.getText().toString();
+                    String dateInput = date.getText().toString();
                     String beginTime = timeStart.getText().toString();
+                        String start_date = URLEncoder.encode(dateInput + " " + beginTime + ":00");
                     String endTime = timeEnd.getText().toString();
+                        String end_date = URLEncoder.encode(dateInput + " " + endTime + ":00");
 
                     // Description input
                     String descr = description.getText().toString();
@@ -93,24 +98,40 @@ public class ReservationActivity extends AppCompatActivity {
                         personAmount = Integer.parseInt(persons.getText().toString());
                     }
 
-                    if(!editReservation) {
-                        // Create reservation, and add to list
-                        Reservation reservation = new Reservation(room, beginTime, endTime, datum, descr, personAmount);
-                        reservation.setDate(datum);
-                        singleton.addReservation(reservation);
-                    }
-                    else{
-                        // Set the new data
-                        reservation.setStartTime(beginTime);
-                        reservation.setEndTime(endTime);
-                        reservation.setDescription(descr);
-                        reservation.setAmountOfPersons(personAmount);
-                        reservation.setDate(datum);
-                    }
+                        // Post reservation to server
+                        try {
+
+                            String output =
+                                    new Post().execute(
+                                            new URL(singleton.REST_URL + "/api/reservations/" + room_id + "?user_id=" + user_id + "&start_date=" + start_date + "&end_date=" + end_date + "&description=" + descr)
+                                    ).get();
+
+                            JSONObject object = new JSONObject(output);
+                            System.out.println("reservation: " + object);
+
+                            if (object.has("http_status")) {
+                                int status = object.getInt("http_status");
+
+                                System.out.println("" + status);
+
+                                if (status >= 200 && status <= 299) {
+                                    //Server response ophalen
+
+//                                    succesAlert("Gebruiker aangemaakt", "Nog een gebruiker aanmaken?");
+                                } else {
+                                    HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
+//                                    showAlert(error_map.get("titel"), error_map.get("bericht"));
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
 
                     Intent intent = new Intent(ReservationActivity.this, ReservationOverviewActivity.class);
                     startActivity(intent);
+
                 }
+
             });
     }
 }

@@ -71,12 +71,13 @@ public class LoginActivity extends AppCompatActivity {
                         String session = server_response.getString("session_status");
                         int user_type = server_response.getInt("user_type");
                         String server_username = server_response.getString("username");
+                        int user_id = server_response.getInt("user_id");
 
                         //Dump gebruiker in Singleton
                         Gebruiker g;
                         switch (user_type) {
                             case 0: { //Normale gebruiker
-                                g = new NormaleGebruiker(server_username, password, user_type, session);
+                                g = new NormaleGebruiker(server_username, password, user_type, session, user_id);
                                 singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, UserMenu.class);
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                 break;
                             }
                             case 1: { //Power gebruiker
-                                g = new PowerGebruiker(server_username, password, user_type, session);
+                                g = new PowerGebruiker(server_username, password, user_type, session, user_id);
                                 singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, UserMenu.class);
@@ -92,8 +93,8 @@ public class LoginActivity extends AppCompatActivity {
                                 break;
                             }
                             case 2: { //Administrator
-                                g = new AdminGebruiker(server_username, password, user_type, session);
-                                singleton.addGebruiker(g);
+                                g = new AdminGebruiker(server_username, password, user_type, session, user_id);
+                                g.setNormalUserId(user_id);singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, AdministratorActivity.class);
                                 startActivity(intent);
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             //Onbekende waarde is laagste gebruiker
                             default: {
-                                g = new NormaleGebruiker(server_username, password, user_type, session);
+                                g = new NormaleGebruiker(server_username, password, user_type, session, user_id);
                                 singleton.addGebruiker(g);
 
                                 Intent intent = new Intent(this, UserMenu.class);

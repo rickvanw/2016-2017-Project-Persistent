@@ -1,15 +1,17 @@
 package com.example.saxion.nl.projectpersistant;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
@@ -31,6 +33,8 @@ public class RoomOverviewActivity extends AppCompatActivity {
     private RoomInOverviewAdapter roomInOverviewAdapter;
     private Singleton singleton = Singleton.getInstance();
     private ArrayList<Room> roomList;
+    public static final String EXTRA_ROOM_ID = "roomid";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +61,14 @@ public class RoomOverviewActivity extends AppCompatActivity {
 
             JSONObject object = new JSONObject(output);
             if(object.has("http_status")) {
+
                 //HTTP status code ophalen
                 int status = object.getInt("http_status");
 
                 //Alles met status 200 is goed
                 if(status >= 200 && status <= 200) {
                     //Haal hier de server response in JSON op
-                    JSONArray server_response = new JSONArray( object.getString("server_response") );
+                    JSONArray server_response = new JSONArray( object.getString("server_response"));
 
                     roomList = new ArrayList<>();
                     for(int i = 0; i < server_response.length(); i++){
@@ -75,13 +80,23 @@ public class RoomOverviewActivity extends AppCompatActivity {
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
-                    showAlert(titel, bericht, status);
                 }
             }
 
             roomInOverviewAdapter = new RoomInOverviewAdapter(this,roomList);
             gridView = (GridView)findViewById(R.id.gridViewRoomOverview);
             gridView.setAdapter(roomInOverviewAdapter);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Room room = roomList.get(i);
+                    int room_id = room.getRoomId();
+                    Intent intent = new Intent(RoomOverviewActivity.this, ReservationActivity.class);
+                    intent.putExtra(EXTRA_ROOM_ID, room_id);
+                    System.out.println(room_id);
+                    startActivity(intent);
+                }
+            });
 
         }
         catch (Exception e) {

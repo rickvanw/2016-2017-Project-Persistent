@@ -16,13 +16,21 @@ import java.security.NoSuchAlgorithmException;
 public abstract class Gebruiker {
     private String username, password, session_id;
     // database id only added and used when changing or removing a user
-    private int type, databaseId;
+    private int type, databaseId, normalUserId;
 
     public Gebruiker(String username, String password, int type, String session_id) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.username = username;
         this.password = hashPassword(password);
         this.type = type;
         this.session_id = session_id;
+    }
+
+    public Gebruiker(String username, String password, int type, String session_id, int user_id) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        this.username = username;
+        this.password = hashPassword(password);
+        this.type = type;
+        this.session_id = session_id;
+        this.normalUserId = user_id;
     }
 
     public String getUsername() {
@@ -84,4 +92,11 @@ public abstract class Gebruiker {
 
     }
 
+    public int getNormalUserId() {
+        return normalUserId;
+    }
+
+    public void setNormalUserId(int normalUserId) {
+        this.normalUserId = normalUserId;
+    }
 }

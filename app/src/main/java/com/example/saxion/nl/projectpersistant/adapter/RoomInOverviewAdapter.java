@@ -1,6 +1,8 @@
 package com.example.saxion.nl.projectpersistant.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
 import android.view.LayoutInflater;
@@ -11,7 +13,10 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.R;
+import com.example.saxion.nl.projectpersistant.ReservationActivity;
+import com.example.saxion.nl.projectpersistant.RoomOverviewActivity;
 import com.example.saxion.nl.projectpersistant.model.Room;
 
 import java.util.ArrayList;
@@ -20,6 +25,9 @@ import java.util.ArrayList;
  * Created by rickv on 16-9-2016.
  */
 public class RoomInOverviewAdapter extends ArrayAdapter<Room>{
+
+    Room room;
+
 
     public RoomInOverviewAdapter(Context context, ArrayList<Room> rooms) {
         super(context,0, rooms);
@@ -36,7 +44,7 @@ public class RoomInOverviewAdapter extends ArrayAdapter<Room>{
         Button button = (Button)convertView.findViewById(R.id.buttonReserveInOverview);
         RelativeLayout rlRoomAvailability = (RelativeLayout)convertView.findViewById(R.id.rlRoomAvailabilityInOverview);
 
-        Room room = getItem(position);
+        room = getItem(position);
 
         tvRoomName.setText(room.getRoomName());
 
@@ -49,6 +57,8 @@ public class RoomInOverviewAdapter extends ArrayAdapter<Room>{
             rlRoomAvailability.setBackgroundColor(Color.parseColor("#EB7363"));
 
         }
+
+
         return convertView;
 
     }
