@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.saxion.nl.projectpersistant.LoginActivity;
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Get;
 import com.example.saxion.nl.projectpersistant.Networking.Post;
@@ -89,7 +90,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
                     // Check if all fields are filled in
                     if (etRoomName == null || etRoomName.getText().toString().isEmpty() || etRoomMaxPeople == null || etRoomMaxPeople.getText().toString().isEmpty()) {
-                        showAlert("Foutmelding", "Vul alle velden in.");
+                        showAlert("Foutmelding", "Vul alle velden in.",0);
                     } else {
 
                         boolean newRoomname = false;
@@ -115,7 +116,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
                         if (!newRoomname && !newRoomMaxPeople) {
                             // no changes
-                            showAlert("Geen wijzigingen gevonden", "Om een wijziging door te voeren, moeten er nieuwe gegevens ingevuld worden");
+                            showAlert("Geen wijzigingen gevonden", "Om een wijziging door te voeren, moeten er nieuwe gegevens ingevuld worden",0);
                         } else {
                             try {
 
@@ -137,7 +138,7 @@ public class AddRoomActivity extends AppCompatActivity {
                                         changeSuccesAlert("Ruimte gewijzigt");
                                     } else {
                                         HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
-                                        showAlert(error_map.get("titel"), error_map.get("bericht"));
+                                        showAlert(error_map.get("titel"), error_map.get("bericht"),status);
                                     }
                                 }
 
@@ -162,7 +163,7 @@ public class AddRoomActivity extends AppCompatActivity {
                     // Check if all fields are filled in
                     if (etRoomName == null || etRoomName.getText().toString().isEmpty() || etRoomMaxPeople == null || etRoomMaxPeople.getText().toString().isEmpty()) {
                         // Not all fields are filled in
-                        showAlert("Foutmelding", "Vul alle velden in.");
+                        showAlert("Foutmelding", "Vul alle velden in.",0);
                     } else {
                         // All fields are filled in
 
@@ -186,7 +187,7 @@ public class AddRoomActivity extends AppCompatActivity {
                                     succesAlert("Ruimte aangemaakt", "Nog een ruimte aanmaken?");
                                 } else {
                                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
-                                    showAlert(error_map.get("titel"), error_map.get("bericht"));
+                                    showAlert(error_map.get("titel"), error_map.get("bericht"),status);
                                 }
                             }
 
@@ -231,7 +232,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
                 }else{
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
-                    showAlert(error_map.get("titel"), error_map.get("bericht"));
+                    showAlert(error_map.get("titel"), error_map.get("bericht"),status);
 
                 }
 
@@ -245,13 +246,16 @@ public class AddRoomActivity extends AppCompatActivity {
 
     }
 
-    public void showAlert(String titel, String bericht) {
+    public void showAlert(String titel, String bericht, final int status) {
         new AlertDialog.Builder(AddRoomActivity.this)
                 .setTitle(titel)
                 .setMessage(bericht)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        /* niks doen */
+                        if(status == 401){
+                            Intent intent = new Intent(AddRoomActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 })
                 .show();

@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.GridView;
 
+import com.example.saxion.nl.projectpersistant.LoginActivity;
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Get;
 import com.example.saxion.nl.projectpersistant.R;
@@ -70,13 +71,14 @@ public class RoomOverviewAdminActivity extends AppCompatActivity {
 
                         roomList.add(room);
                     }
+
                 }
                 else {
                     //Vang de fouten af
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
-                    showAlert(titel, bericht);
+                    showAlert(titel, bericht, status);
                 }
 
             }
@@ -96,13 +98,16 @@ public class RoomOverviewAdminActivity extends AppCompatActivity {
         this.finish();
     }
 
-    public void showAlert(String titel, String bericht) {
+    public void showAlert(String titel, String bericht, final int status) {
         new AlertDialog.Builder(RoomOverviewAdminActivity.this)
                 .setTitle(titel)
                 .setMessage(bericht)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        /* niks doen */
+                        if(status == 401){
+                            Intent intent = new Intent(RoomOverviewAdminActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 })
                 .show();

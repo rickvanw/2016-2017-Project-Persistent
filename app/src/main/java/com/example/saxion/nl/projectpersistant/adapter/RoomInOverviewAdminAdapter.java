@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.saxion.nl.projectpersistant.AdminActivitys.AddRoomActivity;
+import com.example.saxion.nl.projectpersistant.LoginActivity;
 import com.example.saxion.nl.projectpersistant.Networking.Delete;
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.R;
@@ -106,7 +107,7 @@ public class RoomInOverviewAdminAdapter extends ArrayAdapter<Room>{
                     }
                 }else{
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
-                    showAlert(error_map.get("titel"), error_map.get("bericht"));}
+                    showAlert(error_map.get("titel"), error_map.get("bericht"),status);}
             }
 
         }catch (Exception e){}
@@ -141,20 +142,19 @@ public class RoomInOverviewAdminAdapter extends ArrayAdapter<Room>{
                 .show();
     }
 
-    public void showAlert(String titel, String bericht) {
+    public void showAlert(String titel, String bericht, final int status) {
         new AlertDialog.Builder(context)
                 .setTitle(titel)
                 .setMessage(bericht)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        /* niks doen */
+                        if(status == 401){
+                            Intent intent = new Intent(context, LoginActivity.class);
+                            ((Activity) context).startActivityForResult(intent, RESULT_NOTIFY);
+                        }
                     }
                 })
                 .show();
-    }
-
-    public void refresh(){
-        this.notifyDataSetChanged();
     }
 
 }

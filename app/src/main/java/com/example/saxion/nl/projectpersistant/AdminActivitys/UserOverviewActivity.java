@@ -14,6 +14,7 @@ import com.example.saxion.nl.projectpersistant.Classes.AdminGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.NormaleGebruiker;
 import com.example.saxion.nl.projectpersistant.Classes.PowerGebruiker;
+import com.example.saxion.nl.projectpersistant.LoginActivity;
 import com.example.saxion.nl.projectpersistant.Networking.ErrorHandler;
 import com.example.saxion.nl.projectpersistant.Networking.Get;
 import com.example.saxion.nl.projectpersistant.R;
@@ -97,7 +98,7 @@ public class UserOverviewActivity extends AppCompatActivity {
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
-                    showAlert(titel, bericht);
+                    showAlert(titel, bericht, status);
                 }
             }
 
@@ -115,13 +116,16 @@ public class UserOverviewActivity extends AppCompatActivity {
         this.finish();
     }
 
-    public void showAlert(String titel, String bericht) {
+    public void showAlert(String titel, String bericht, final int status) {
         new AlertDialog.Builder(UserOverviewActivity.this)
                 .setTitle(titel)
                 .setMessage(bericht)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        /* niks doen */
+                        if(status == 401){
+                            Intent intent = new Intent(UserOverviewActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 })
                 .show();
