@@ -61,53 +61,62 @@ public class AddRoomActivity extends AppCompatActivity {
         tvNewRoomTitle = (TextView)findViewById(R.id.tvNewRoomTitle);
 
         if(getIntent().getExtras() != null) {
-            // change Room
+            // Edit room
 
+            // Activity title
             tvNewRoomTitle.setText("Administrator: ruimte wijzigen");
 
+            // Get the database id from the selected room
             Intent intent = getIntent();
             final int databaseId = intent.getIntExtra(EXTRA_ROOM_DATABASE_ID, -1);
-            final Room room = getRoom(databaseId);
 
-            etRoomName.setText(room.getRoomName());
-            etRoomMaxPeople.setText(room.getAmountOfPeople());
+            // Catch exceptions (most important are nullpointer from room.get
+            try {
 
-            buttonNewRoom.setText("Wijzig");
+                // Get a Room object from the entry containing the correct id
+                final Room room = getRoom(databaseId);
 
-            buttonNewRoom.setOnClickListener(new View.OnClickListener() {
+                // Set the textviews to display the current name and max people
+                etRoomName.setText(room.getRoomName());
+                etRoomMaxPeople.setText(room.getAmountOfPeople()+"");
+
+                // The button text should be changed because it will now change the entry, not create a new one
+                buttonNewRoom.setText("Wijzig");
+
+                buttonNewRoom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     // Check if all fields are filled in
-                    if(etRoomName == null || etRoomName.getText().toString().isEmpty() || etRoomMaxPeople == null || etRoomMaxPeople.getText().toString().isEmpty()){
+                    if (etRoomName == null || etRoomName.getText().toString().isEmpty() || etRoomMaxPeople == null || etRoomMaxPeople.getText().toString().isEmpty()) {
                         showAlert("Foutmelding", "Vul alle velden in.");
-                    }else{
+                    } else {
 
                         boolean newRoomname = false;
                         boolean newRoomMaxPeople = false;
 
                         String changeURL = "";
 
-                        if(!etRoomName.getText().toString().equals(room.getRoomName())){
+                        if (!etRoomName.getText().toString().equals(room.getRoomName())) {
                             newRoomname = true;
-                            changeURL+="room_name=" + etRoomName.getText().toString();
+                            changeURL += "room_name=" + etRoomName.getText().toString();
                         }
 
-                        if(Integer.parseInt(etRoomMaxPeople.getText().toString()) != room.getAmountOfPeople()){
+                        if (Integer.parseInt(etRoomMaxPeople.getText().toString()) != room.getAmountOfPeople()) {
                             newRoomMaxPeople = true;
-                            if(newRoomname){
-                                changeURL+="&no_of_people=" + Integer.parseInt(etRoomMaxPeople.getText().toString());
-                            }else{
-                                changeURL+="no_of_people=" + Integer.parseInt(etRoomMaxPeople.getText().toString());
+                            if (newRoomname) {
+                                changeURL += "&no_of_people=" + Integer.parseInt(etRoomMaxPeople.getText().toString());
+                            } else {
+                                changeURL += "no_of_people=" + Integer.parseInt(etRoomMaxPeople.getText().toString());
                             }
                         }
 
-                        System.out.println("CHANGE URL = "+changeURL);
+                        System.out.println("CHANGE URL = " + changeURL);
 
-                        if(!newRoomname && !newRoomMaxPeople) {
+                        if (!newRoomname && !newRoomMaxPeople) {
                             // no changes
-                            showAlert("Geen wijzigingen gevonden","Om een wijziging door te voeren, moeten er nieuwe gegevens ingevuld worden");
-                        }else {
+                            showAlert("Geen wijzigingen gevonden", "Om een wijziging door te voeren, moeten er nieuwe gegevens ingevuld worden");
+                        } else {
                             try {
 
                                 String output =
@@ -122,8 +131,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
                                     System.out.println("" + status);
 
-                                    // TODO status 409 moet hier weg, dit is een tijdelijke oplossing
-                                    if ((status >= 200 && status <= 299)|| status == 409) {
+                                    if ((status >= 200 && status <= 299)) {
                                         //Server response ophalen
 
                                         changeSuccesAlert("Ruimte gewijzigt");
@@ -133,13 +141,16 @@ public class AddRoomActivity extends AppCompatActivity {
                                     }
                                 }
 
-                            } catch (Exception e) {
+                                } catch (Exception e) {
+                                }
                             }
-                        }
 
+                        }
                     }
-                }
-            });
+                });
+
+            } catch(Exception e){
+            }
 
         }else {
             // Add room
@@ -216,7 +227,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
                     JSONObject server_response = array_response.getJSONObject(0);
 
-                    room = new Room(server_response.getInt("room_id"),server_response.getInt("no_of_people"), server_response.getString("naam"));
+                    room = new Room(server_response.getInt("room_id"),server_response.getInt("no_of_people"), server_response.getString("room_name"));
 
                 }else{
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
@@ -277,4 +288,5 @@ public class AddRoomActivity extends AppCompatActivity {
 
                 .show();
     }
+
 }

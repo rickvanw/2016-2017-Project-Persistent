@@ -23,7 +23,7 @@
         android:layout_height="50dp"
         android:text="Plaats reservering"
         android:id="@+id/buttonAdminReserve"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:paddingLeft="40dp"
@@ -46,17 +46,6 @@
         android:layout_height="50dp"
         android:text="Zoek ruimtes"
         android:id="@+id/buttonAdminRoomOverview"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="40dp"
-        android:backgroundTint="#463928"
-        android:textColor="#ffffff" />
-
-    <Button
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:text="Mijn meldingen"
-        android:id="@+id/buttonAdminNotifications"
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:paddingLeft="40dp"

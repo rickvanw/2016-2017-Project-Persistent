@@ -1,5 +1,7 @@
 package com.example.saxion.nl.projectpersistant;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -84,6 +86,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
+                    showAlert(titel,bericht);
                 }
             }
 
@@ -105,5 +108,17 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void showAlert(String titel, String bericht) {
+        new AlertDialog.Builder(ReservationOverviewActivity.this)
+                .setTitle(titel)
+                .setMessage(bericht)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        /* niks doen */
+                    }
+                })
+                .show();
     }
 }

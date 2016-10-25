@@ -32,8 +32,6 @@ public class RoomControlActivity extends AppCompatActivity {
         Button buttonAdminReservations = (Button)findViewById(R.id.buttonAdminReservations);
         Button buttonAdminAddRoom = (Button)findViewById(R.id.buttonAdminAddRoom);
         Button buttonAdminEditRoom = (Button)findViewById(R.id.buttonAdminEditRoom);
-        Button buttonAdminRoomMonitoring = (Button)findViewById(R.id.buttonAdminRoomMonitoring);
-
         buttonAdminAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

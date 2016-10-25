@@ -31,7 +31,6 @@ public class UserControlActivity extends AppCompatActivity {
 
         Button buttonAdminAddUser = (Button)findViewById(R.id.buttonAdminAddUser);
         Button buttonAdminEditUser = (Button)findViewById(R.id.buttonAdminEditUser);
-        Button buttonAdminUserMonitoring = (Button)findViewById(R.id.buttonAdminUserMonitoring);
 
         buttonAdminAddUser.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,7 +25,11 @@ public class ErrorHandler {
         }
         if (http_code == 401) {
             returnMap.put("titel", "Foutmelding");
-            returnMap.put("bericht", "Ongeldige gebruikersgegevens");
+            returnMap.put("bericht", "Niet geautoriseerd, log opnieuw in en probeer het nogmaals");
+        }
+        if (http_code == 404) {
+            returnMap.put("titel", "Foutmelding");
+            returnMap.put("bericht", "Opgevraagde gegevens niet gevonden");
         }
         if (http_code == 409) {
             returnMap.put("titel", "Foutmelding");

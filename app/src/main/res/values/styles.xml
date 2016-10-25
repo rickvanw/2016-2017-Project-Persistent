@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/apptheme_color</item>
+        <item name="colorPrimaryDark">@color/ovbruin</item>
+        <item name="colorAccent">@color/ovpaars</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,5 +17,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AutoCompleteTextViewAppTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
+        <item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>
+        <item name="android:background">@drawable/apptheme_edit_text_holo_light</item>
+    </style>
 
 </resources>

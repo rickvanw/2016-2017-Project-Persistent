@@ -115,8 +115,14 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("LOGIN_ACTIVITY", "Gebruiker is ingelogd op app");
                     }
                     else {
-                        HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
-                        showAlert(error_map.get("titel"), error_map.get("bericht"));
+
+                        if(status == 401){
+                            showAlert("Foutmelding","Onjuiste gebruikersgegevens");
+
+                        }else{
+
+                            HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
+                            showAlert(error_map.get("titel"), error_map.get("bericht"));}
                     }
                 }
             }

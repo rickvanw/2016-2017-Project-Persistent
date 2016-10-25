@@ -206,8 +206,7 @@ public class AddUserActivity extends AppCompatActivity {
 
                                         System.out.println("" + status);
 
-                                        // TODO status 409 moet hier weg, dit is een tijdelijke oplossing
-                                        if ((status >= 200 && status <= 299)|| status == 409) {
+                                        if ((status >= 200 && status <= 299)) {
                                             //Server response ophalen
 
                                             changeSuccesAlert("Gebruiker gewijzigt");

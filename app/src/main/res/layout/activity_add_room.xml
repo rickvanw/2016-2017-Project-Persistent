@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.saxion.nl.projectpersistant.AdminActivitys.AddRoomActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F9CA6B">
 
     <TextView
         android:layout_width="match_parent"

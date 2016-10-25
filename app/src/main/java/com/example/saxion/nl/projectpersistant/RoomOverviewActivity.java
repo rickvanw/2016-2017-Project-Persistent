@@ -1,5 +1,7 @@
 package com.example.saxion.nl.projectpersistant;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -72,6 +74,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
+                    showAlert(titel, bericht);
                 }
             }
 
@@ -83,5 +86,17 @@ public class RoomOverviewActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void showAlert(String titel, String bericht) {
+        new AlertDialog.Builder(RoomOverviewActivity.this)
+                .setTitle(titel)
+                .setMessage(bericht)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        /* niks doen */
+                    }
+                })
+                .show();
     }
 }

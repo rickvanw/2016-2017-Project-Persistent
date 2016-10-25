@@ -1,5 +1,7 @@
 package com.example.saxion.nl.projectpersistant.AdminActivitys;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -74,11 +76,13 @@ public class RoomOverviewAdminActivity extends AppCompatActivity {
                     HashMap<String, String> error_map = new ErrorHandler(status).getErrorMessage();
                     String titel = error_map.get("titel");
                     String bericht = error_map.get("bericht");
+                    showAlert(titel, bericht);
                 }
 
             }
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         roomInOverviewAdminAdapter = new RoomInOverviewAdminAdapter(this,roomList);
         gridView = (GridView)findViewById(R.id.gridViewRoomOverviewAdmin);
@@ -90,5 +94,17 @@ public class RoomOverviewAdminActivity extends AppCompatActivity {
         Intent refresh = new Intent(this, RoomOverviewAdminActivity.class);
         startActivity(refresh);
         this.finish();
+    }
+
+    public void showAlert(String titel, String bericht) {
+        new AlertDialog.Builder(RoomOverviewAdminActivity.this)
+                .setTitle(titel)
+                .setMessage(bericht)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        /* niks doen */
+                    }
+                })
+                .show();
     }
 }

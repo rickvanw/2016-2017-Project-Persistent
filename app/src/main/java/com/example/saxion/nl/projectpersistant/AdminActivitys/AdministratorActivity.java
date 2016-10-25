@@ -36,7 +36,6 @@ public class AdministratorActivity extends AppCompatActivity {
         Button buttonAdminReserve = (Button)findViewById(R.id.buttonAdminReserve);
         Button buttonAdminMyReservations = (Button)findViewById(R.id.buttonAdminMyReservations);
         Button buttonAdminRoomOverview = (Button)findViewById(R.id.buttonAdminRoomOverview);
-        Button buttonAdminNotifications = (Button)findViewById(R.id.buttonAdminNotifications);
         Button buttonAdminUserControl = (Button)findViewById(R.id.buttonAdminUserControl);
         Button buttonAdminRoomControl = (Button)findViewById(R.id.buttonAdminRoomControl);
 
