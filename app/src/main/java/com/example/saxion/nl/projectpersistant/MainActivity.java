@@ -3,6 +3,7 @@ package com.example.saxion.nl.projectpersistant;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.wang.avi.AVLoadingIndicatorView;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 //        startAnim();
 //        while(stillLoading){
 //
-//        }
+        }
     public void launchLogin(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
