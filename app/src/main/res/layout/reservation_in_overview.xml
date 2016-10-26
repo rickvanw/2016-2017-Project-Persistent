@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="750dp"
+        android:layout_width="901dp"
         android:layout_height="120dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="50dp"
@@ -20,24 +20,18 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="100dp"
-            android:layout_height="match_parent">
+            android:layout_width="198dp"
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:text="8"
                 android:id="@+id/tvDateDayInOverview"
-                android:textSize="50dp"
+                android:textSize="30dp"
                 android:gravity="center" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="sept"
-                android:id="@+id/tvDateMonthInOverview"
-                android:textSize="35dp"
-                android:gravity="center_horizontal" />
         </LinearLayout>
 
         <SurfaceView
@@ -45,21 +39,22 @@
             android:layout_height="wrap_content"
             android:id="@+id/surfaceView2" />
 
-        <TextView
-            android:layout_width="450dp"
-            android:layout_height="match_parent"
-            android:text="sprint planning"
-            android:id="@+id/tvDescriptionResInOverview"
-            android:textSize="45dp"
-            android:gravity="center" />
-
         <SurfaceView
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:id="@+id/surfaceView3" />
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="544dp"
+            android:layout_height="match_parent"
+            android:text="sprint planning"
+            android:id="@+id/tvDescriptionResInOverview"
+            android:textSize="35dp"
+            android:paddingLeft="5dp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="9:00"
             android:id="@+id/tvStartTimeInOverview"
