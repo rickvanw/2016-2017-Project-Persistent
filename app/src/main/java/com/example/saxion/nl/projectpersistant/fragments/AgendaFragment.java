@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import com.example.saxion.nl.projectpersistant.R;
 import com.example.saxion.nl.projectpersistant.TimeLineAdapter;
 import com.example.saxion.nl.projectpersistant.TimeLineModel;
+import com.example.saxion.nl.projectpersistant.model.Afspraak;
+import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +44,12 @@ public class AgendaFragment extends Fragment {
         mRecyclerView.setLayoutManager(getLinearLayoutManager());
         mRecyclerView.setHasFixedSize(true);
 
-
         initView();
 
         return  rootview;
 
     }
+
 
     private LinearLayoutManager getLinearLayoutManager() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -55,16 +58,22 @@ public class AgendaFragment extends Fragment {
     }
 
     private void initView() {
-
-        for(int i = 0;i <20;i++) {
+        int s = Singleton.getInstance().getAfspraaken().size();
+        Log.d("s", String.valueOf(s));
+        for(int i = 0; i < Singleton.getInstance().getAfspraaken().size(); i++) {
             TimeLineModel model = new TimeLineModel();
-            model.setName("Random"+i);
-            model.setAge(i);
+            model.setAllAfspraken(Singleton.getInstance().getAfspraaken());
             mDataList.add(model);
         }
 
-        mTimeLineAdapter = new TimeLineAdapter(mDataList, mOrientation);
-        mRecyclerView.setAdapter(mTimeLineAdapter);
+
+            mTimeLineAdapter = new TimeLineAdapter(mDataList, mOrientation);
+            mRecyclerView.setAdapter(mTimeLineAdapter);
+
+        }
+
+    public void update(){
+        initView();
     }
 
 }

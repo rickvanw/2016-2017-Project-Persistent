@@ -20,7 +20,7 @@ public class Singleton {
     public final String REST_URL = "http://roomfinder.053chan.org";
     ArrayList<Reservation> reservations;
     ArrayList<Gebruiker> gebruikers;
-
+    ArrayList<Afspraak> afspraaken;
     private static Singleton ourInstance = new Singleton();
 
     public static Singleton getInstance() {
@@ -35,7 +35,7 @@ public class Singleton {
         Room room = new Room(10, 4, "ruimte.1");
         reservations = new ArrayList<>();
         gebruikers = new ArrayList<>();
-
+        afspraaken = new ArrayList<>();
         Reservation reservation = new Reservation(room,"12:00", "12:15", "21-07-1992", "vergadering", 8);
         addReservation(reservation);
         Reservation reservation1 = new Reservation(room,"12:15", "12:15", "21-07-1992", "meeting", 8);
@@ -68,6 +68,13 @@ public class Singleton {
 
     public void addGebruiker(Gebruiker gebruiker) {
         this.loggedInUser = gebruiker;
+    }
+    public void addAfspraak(Afspraak afspraak){
+        afspraaken.add(afspraak);
+    }
+
+    public ArrayList<Afspraak> getAfspraaken() {
+        return afspraaken;
     }
 
     /**

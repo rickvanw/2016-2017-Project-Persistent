@@ -59,7 +59,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         // Get the reservations for the specific user
         try {
             String output = new Get().execute(
-                    new URL(singleton.REST_URL + "/api/reservations/user")
+                    new URL(singleton.REST_URL + "/api/reservations/")
             ).get();
 
             JSONObject object = new JSONObject(output);
