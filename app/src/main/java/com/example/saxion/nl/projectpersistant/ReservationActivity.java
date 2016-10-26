@@ -67,8 +67,6 @@ public class ReservationActivity extends AppCompatActivity {
 
         // If intentExtra != null, get the data, else move on
         if(getIntent().getExtras() != null) {
-
-            editReservation = true;
             Intent intent = getIntent();
             room_id = intent.getIntExtra(EXTRA_ROOM_ID, -1);
             System.out.println("roomId: " + room_id );
@@ -126,10 +124,6 @@ public class ReservationActivity extends AppCompatActivity {
 
                         } catch (Exception e) {
                         }
-
-                    Intent intent = new Intent(ReservationActivity.this, ReservationOverviewActivity.class);
-                    startActivity(intent);
-
                 }
 
             });

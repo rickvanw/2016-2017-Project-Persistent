@@ -91,9 +91,9 @@ public class RoomOverviewActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Room room = roomList.get(i);
                     int room_id = room.getRoomId();
+
                     Intent intent = new Intent(RoomOverviewActivity.this, ReservationActivity.class);
                     intent.putExtra(EXTRA_ROOM_ID, room_id);
-                    System.out.println(room_id);
                     startActivity(intent);
                 }
             });
