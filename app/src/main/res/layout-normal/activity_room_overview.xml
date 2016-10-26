@@ -9,18 +9,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="    Overzicht Kamers"
+        android:text="Overzicht Kamers"
         android:id="@+id/textView9"
         android:textSize="25dp"
         android:gravity="top"
-        android:background="#F9CA6B" />
+        android:background="#F9CA6B"
+        android:paddingLeft="20dp" />
 
     <GridView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/gridViewRoomOverview"
         android:numColumns="1"
-        android:overScrollMode="never"
         android:layout_marginTop="40dp" />
 
 </RelativeLayout>

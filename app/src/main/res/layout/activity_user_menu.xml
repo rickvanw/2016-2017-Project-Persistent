@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context="com.example.saxion.nl.projectpersistant.UserMenu"
-    android:weightSum="2">>
+    android:weightSum="2"
+    android:background="@drawable/login_wallpaper">>
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +14,8 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:weightSum="2"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:alpha="0.8">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -21,31 +23,36 @@
             android:onClick="plaatsReservering">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
                 android:text="Reservering plaatsen"
                 android:id="@+id/US_reserveringplaatsen_tv"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:textIsSelectable="false"
-                android:textSize="35dp" />
+                android:textSize="35dp"
+                android:background="#E7E3D8"
+                android:gravity="center" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:background="@color/ovgeel"
             android:layout_height="0dp"
-            android:onClick="gaNaarMeldingen">>
+            android:onClick="gaNaarMeldingen"
+            android:gravity="center">>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
                 android:text="Mijn Meldingen"
                 android:id="@+id/textView19"
                 android:textIsSelectable="false"
                 android:textSize="35dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:background="#E7E3D8"
+                android:gravity="center" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -55,38 +62,45 @@
         android:layout_weight="1"
         android:background="@color/ovrood"
         android:layout_height="match_parent"
-        android:onClick="zoekRuimte">>
+        android:onClick="zoekRuimte"
+        android:alpha="0.8">>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:gravity="center">
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
                 android:text="Zoek ruimte"
                 android:id="@+id/textView20"
                 android:textIsSelectable="false"
                 android:textSize="35dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:background="#E7E3D8"
+                android:gravity="center" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:background="@color/ovpaars"
             android:onClick="gaNaarOverzicht"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:gravity="center">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
                 android:text="Reserveringen overzicht"
                 android:id="@+id/textView21"
                 android:textIsSelectable="false"
                 android:textSize="35dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:background="#E7E3D8"
+                android:gravity="center" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

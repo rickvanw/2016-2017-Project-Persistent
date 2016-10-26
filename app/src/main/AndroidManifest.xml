@@ -36,7 +36,8 @@
         <activity android:name=".SignIn" />
         <activity android:name=".AdminActivitys.UserOverviewActivity" />
         <activity android:name=".AdminActivitys.AddRoomActivity" />
-        <activity android:name=".AdminActivitys.RoomOverviewAdminActivity"></activity>
+        <activity android:name=".AdminActivitys.RoomOverviewAdminActivity" />
+        <activity android:name=".AdminActivitys.ReservationOverviewAdminActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,25 +8,38 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.saxion.nl.projectpersistant.LoginActivity"
-    android:background="#FFF5CF">
+    android:background="@drawable/login_wallpaper"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="false">
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/app_logo"
+        android:alpha="0.8"
+        android:layout_marginTop="10dp" />
 
     <EditText
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/edtUsername"
         android:hint="Gebruikersnaam"
-        android:layout_below="@+id/txtRoomFinder"
-        android:layout_centerHorizontal="true" />
+        android:background="#E7E3D8"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="50dp" />
 
     <EditText
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/edtPassword"
         android:hint="Wachtwoord"
-        android:layout_below="@+id/edtUsername"
-        android:layout_alignStart="@+id/edtUsername" />
+        android:background="#E7E3D8"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -35,17 +48,7 @@
         android:id="@+id/btnDoLogin"
         android:background="#7F6854"
         android:textColor="#F0F0F0"
-        android:layout_below="@+id/edtPassword"
-        android:layout_alignEnd="@+id/edtPassword"
-        android:onClick="doLogin"/>
+        android:onClick="doLogin"
+        android:layout_marginTop="50dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Roomfinder"
-        android:id="@+id/txtRoomFinder"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-</RelativeLayout>
+</LinearLayout>

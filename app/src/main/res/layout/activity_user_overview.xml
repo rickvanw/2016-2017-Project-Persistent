@@ -21,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/gridViewUserOverview"
-        android:numColumns="3"
-        android:overScrollMode="never" />
+        android:numColumns="3" />
 
 </LinearLayout>

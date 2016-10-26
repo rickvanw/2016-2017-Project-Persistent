@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="Mijn afspraken"
-        android:id="@+id/textView6"
+        android:id="@+id/tvReservationOverviewTitle"
         android:textSize="40dp"
         android:gravity="top"
         android:background="#F9CA6B"

@@ -48,5 +48,13 @@ public class RoomControlActivity extends AppCompatActivity {
             }
         });
 
+        buttonAdminReservations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoomControlActivity.this, ReservationOverviewAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
