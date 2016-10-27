@@ -42,4 +42,9 @@ public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
 
         return convertView;
     }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
 }

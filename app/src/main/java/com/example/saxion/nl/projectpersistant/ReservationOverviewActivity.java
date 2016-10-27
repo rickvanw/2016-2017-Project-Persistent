@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
     private ReservationInOverviewAdapter reservationInOverviewAdapter;
     private Singleton singleton;
     public static final String EXTRA_POSITION = "position";
-    ArrayList<Reservation> reservations;
+    private ArrayList<Reservation> reservations = new ArrayList<>();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         // Get the reservations for the specific user
         try {
             String output = new Get().execute(
-                    new URL(singleton.REST_URL + "/api/reservations/")
+                    new URL(singleton.REST_URL + "/api/reservations/user")
             ).get();
 
             JSONObject object = new JSONObject(output);
@@ -73,7 +74,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                     JSONArray server_response = new JSONArray( object.getString("server_response") );
                     System.out.println(server_response.toString());
 
-                    reservations = new ArrayList<>();
+
                     for(int i = 0; i < server_response.length(); i++){
                         reservations.add(new Reservation(room,server_response.getJSONObject(i).getString("start_date").substring(11,16),
                                                             server_response.getJSONObject(i).getString("end_date").substring(11,16),
@@ -99,6 +100,7 @@ public class ReservationOverviewActivity extends AppCompatActivity {
         reservationInOverviewAdapter = new ReservationInOverviewAdapter(this, reservations);
         lvReservationOverview = (ListView) findViewById(R.id.lvReservationOverview);
         lvReservationOverview.setAdapter(reservationInOverviewAdapter);
+
         lvReservationOverview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -123,5 +125,17 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public void OnRestart(){
+        reservationInOverviewAdapter.notifyDataSetChanged();
+
+        if (Build.VERSION.SDK_INT >= 11) {
+            recreate();
+        } else {
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
     }
 }

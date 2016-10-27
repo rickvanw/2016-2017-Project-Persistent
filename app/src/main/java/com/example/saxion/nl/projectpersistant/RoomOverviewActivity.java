@@ -32,7 +32,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
     private GridView gridView;
     private RoomInOverviewAdapter roomInOverviewAdapter;
     private Singleton singleton = Singleton.getInstance();
-    private ArrayList<Room> roomList;
+    private ArrayList<Room> roomList = new ArrayList<>();;
     public static final String EXTRA_ROOM_ID = "roomid";
 
 
@@ -70,7 +70,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
                     //Haal hier de server response in JSON op
                     JSONArray server_response = new JSONArray( object.getString("server_response"));
 
-                    roomList = new ArrayList<>();
+
                     for(int i = 0; i < server_response.length(); i++){
                         roomList.add(new Room(server_response.getJSONObject(i).getInt("room_id"), server_response.getJSONObject(i).getInt("no_of_people"),server_response.getJSONObject(i).getString("room_name")));
                     }
