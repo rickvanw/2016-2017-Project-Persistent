@@ -10,4 +10,7 @@
     <color name="ovbruin">#463928</color>
     <color name="apptheme_color">#f9ca6b</color>
 
+    <!-- others -->
+    <color name="text_row">#977dd2</color>
+    <color name="clock_edge">#ffffff</color>
 </resources>

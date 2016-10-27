@@ -37,7 +37,8 @@
         <activity android:name=".AdminActivitys.UserOverviewActivity" />
         <activity android:name=".AdminActivitys.AddRoomActivity" />
         <activity android:name=".AdminActivitys.RoomOverviewAdminActivity" />
-        <activity android:name=".AdminActivitys.ReservationOverviewAdminActivity"></activity>
+        <activity android:name=".AdminActivitys.ReservationOverviewAdminActivity" />
+        <activity android:name=".FancyPerdurable"></activity>
     </application>
 
 </manifest>

@@ -1,27 +1,21 @@
 package com.example.saxion.nl.projectpersistant;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.example.saxion.nl.projectpersistant.Classes.Gebruiker;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import com.example.saxion.nl.projectpersistant.Networking.Get;
-import com.example.saxion.nl.projectpersistant.fragments.AgendaFragment;
-import com.example.saxion.nl.projectpersistant.fragments.BeschikbaarFragment;
-import com.example.saxion.nl.projectpersistant.fragments.DetailsFragment;
 import com.example.saxion.nl.projectpersistant.model.Afspraak;
-import com.example.saxion.nl.projectpersistant.model.Reservation;
-import com.example.saxion.nl.projectpersistant.model.Room;
+import com.example.saxion.nl.projectpersistant.model.CalendarTimeSlot;
 import com.example.saxion.nl.projectpersistant.model.Singleton;
 
 import org.json.JSONArray;
@@ -30,46 +24,58 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Pendurable("eeuwigdurend) is de stand van de app zoals die aan de muur wordt opgehangen.
- * Landscape is enforced.
- */
+import uk.co.barbuzz.clockscroller.FastScroller;
 
-public class PerdurableActivity extends FragmentActivity implements BeschikbaarFragment.OnMenuClickListener {
-    private Singleton singleton;
-    @Override
-    public void goToMenu() {
-        Intent i = new Intent(this, ReservationActivity.class);
-        startActivity(i);
-    }
+public class FancyPerdurable extends AppCompatActivity {
 
-    public enum STATUS {AVAILABLE, BUSY, ERROR}
+    private RecyclerView mContactsRecyclerView;
+    private RecyclerViewAdapter mAdapter;
 
-    private BeschikbaarFragment fragment;
-    private AgendaFragment agendaFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perdurable);
+        setContentView(R.layout.activity_fancy_perdurable);
 
-        singleton = Singleton.getInstance();
-        Button reserveringen = (Button) findViewById(R.id.button);
-        reserveringen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(PerdurableActivity.this, FancyPerdurable.class);
-                startActivity(i);
-            }
-        });
+        mContactsRecyclerView = (RecyclerView) findViewById(R.id.contacts_recycler_view);
+        mContactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<CalendarTimeSlot> calendarTimeSlotsList = new ArrayList<>();
 
+        for (int hour = 0; hour <= 23; hour++) {
+            //String format = new DecimalFormat("##.00").format(hour);
+            String format = String.format("%02d:00", hour);
+            CalendarTimeSlot calendarTimeSlot = new CalendarTimeSlot(format);
+            calendarTimeSlotsList.add(calendarTimeSlot);
+        }
+
+        executeServerRequest();
+        mAdapter = new RecyclerViewAdapter(calendarTimeSlotsList, this);
+        mContactsRecyclerView.setAdapter(mAdapter);
+
+
+        FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller_view);
+
+        /*
+        //use the following to style the scroll bar & clock handle programmatically if needed
+        fastScroller.setClockEdgeColor(getResources().getColor(R.color.clock_edge));
+        fastScroller.setClockFaceColor(getResources().getColor(android.R.color.transparent));
+        fastScroller.setClockLineWidth(getResources().getDimension(R.dimen.clock_stroke_width));
+        fastScroller.setClockScrollBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        fastScroller.setClockScrollBarSelectedColor(getResources().getColor(R.color.text_row));
+        */
+
+        fastScroller.setRecyclerView(mContactsRecyclerView);
     }
+
     private void executeServerRequest() {
 
         try {
             Log.d("EXE1", "exe");
-
+Singleton singleton = Singleton.getInstance();
             String output = new Get().execute(
                     new URL(singleton.REST_URL + "/api/reservations/1")
             ).get();
@@ -93,7 +99,7 @@ public class PerdurableActivity extends FragmentActivity implements BeschikbaarF
                         Singleton.getInstance().addAfspraak(tmp);
                     }
                     //afspraken toegevoegd dus update view
-                    agendaFragment.update();
+
                 }
 
 
@@ -108,4 +114,6 @@ public class PerdurableActivity extends FragmentActivity implements BeschikbaarF
             e.printStackTrace();
         }
     }
+
+
 }

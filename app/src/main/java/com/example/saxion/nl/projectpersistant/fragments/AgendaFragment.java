@@ -68,8 +68,9 @@ public class AgendaFragment extends Fragment {
 
 
             mTimeLineAdapter = new TimeLineAdapter(mDataList, mOrientation);
-            mRecyclerView.setAdapter(mTimeLineAdapter);
-
+         if(mTimeLineAdapter !=null) {
+             mRecyclerView.setAdapter(mTimeLineAdapter);
+         }
         }
 
     public void update(){
