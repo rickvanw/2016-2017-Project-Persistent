@@ -42,7 +42,7 @@ public class AdministratorActivity extends AppCompatActivity {
         buttonAdminReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdministratorActivity.this, ReservationActivity.class);
+                Intent intent = new Intent(AdministratorActivity.this, RoomOverviewActivity.class);
                 startActivity(intent);
             }
         });

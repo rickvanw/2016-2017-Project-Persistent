@@ -87,6 +87,14 @@ public class Singleton {
         return loggedInUser;
     }
 
+    public boolean isLoggedIn() {
+        if(loggedInUser==null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     /**
      * Geeft een SHA512 hash terug op basis van de ingevoerde String
      * @param password

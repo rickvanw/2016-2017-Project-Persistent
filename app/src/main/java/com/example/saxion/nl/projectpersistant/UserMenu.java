@@ -30,19 +30,8 @@ public class UserMenu extends AppCompatActivity {
 
     }
 
-    public void plaatsReservering(View view){
-        Intent i = new Intent(UserMenu.this, ReservationActivity.class);
-        startActivity(i);
-    }
-
-
     public void zoekRuimte(View view){
         Intent i = new Intent(UserMenu.this, RoomOverviewActivity.class);
-        startActivity(i);
-    }
-    //TOODO activity bestaat nog niet
-    public void gaNaarMeldingen(View View){
-        Intent i = new Intent(UserMenu.this, PerdurableActivity.class);
         startActivity(i);
     }
 

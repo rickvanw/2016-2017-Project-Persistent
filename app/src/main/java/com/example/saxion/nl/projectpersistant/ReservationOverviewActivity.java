@@ -82,6 +82,10 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                                                             server_response.getJSONObject(i).getString("description"),
                                                             0));
                     }
+
+                    if(reservations.size() == 0){
+                        showAlert("U heeft geen reserveringen","Klik op ok om terug te keren",1);
+                    }
                 }
                 else {
                     //Vang de fouten af
@@ -121,6 +125,9 @@ public class ReservationOverviewActivity extends AppCompatActivity {
                         if(status == 401){
                             Intent intent = new Intent(ReservationOverviewActivity.this, LoginActivity.class);
                             startActivity(intent);
+                        }
+                        if(status == 1){
+                            finish();
                         }
                     }
                 })

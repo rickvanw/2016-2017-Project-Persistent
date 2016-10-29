@@ -33,12 +33,16 @@ public class ReservationInOverviewAdapter extends ArrayAdapter<Reservation> {
         TextView tvDateDay = (TextView)convertView.findViewById(R.id.tvDateDayInOverview);
         TextView tvDescription = (TextView)convertView.findViewById(R.id.tvDescriptionResInOverview);
         TextView tvStartTime = (TextView)convertView.findViewById(R.id.tvStartTimeInOverview);
+        TextView tvRoomName = (TextView)convertView.findViewById(R.id.tvRoomNameInReservationOverview);
+
 
         Reservation reservation = getItem(position);
 
         tvDateDay.setText(reservation.getDate());
         tvDescription.setText(reservation.getDescription());
         tvStartTime.setText(reservation.getStartTime());
+        tvRoomName.setText(reservation.getRoom().getRoomName());
+
 
         return convertView;
     }

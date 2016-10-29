@@ -34,6 +34,8 @@ public class RoomOverviewActivity extends AppCompatActivity {
     private Singleton singleton = Singleton.getInstance();
     private ArrayList<Room> roomList = new ArrayList<>();;
     public static final String EXTRA_ROOM_ID = "roomid";
+    public static final String EXTRA_ROOM_NAME = "roomname";
+
 
 
     @Override
@@ -91,10 +93,17 @@ public class RoomOverviewActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Room room = roomList.get(i);
                     int room_id = room.getRoomId();
+                    String roomName = room.getRoomName();
 
-                    Intent intent = new Intent(RoomOverviewActivity.this, ReservationActivity.class);
-                    intent.putExtra(EXTRA_ROOM_ID, room_id);
-                    startActivity(intent);
+                    if(!singleton.isLoggedIn()){
+                        loginAlert("Log in om te reserveren","",0);
+                    }else {
+
+                        Intent intent = new Intent(RoomOverviewActivity.this, ReservationActivity.class);
+                        intent.putExtra(EXTRA_ROOM_ID, room_id);
+                        intent.putExtra(EXTRA_ROOM_NAME, roomName);
+                        startActivity(intent);
+                    }
                 }
             });
 
@@ -114,6 +123,26 @@ public class RoomOverviewActivity extends AppCompatActivity {
                             Intent intent = new Intent(RoomOverviewActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }
+                    }
+                })
+                .show();
+    }
+
+    public void loginAlert(String titel, String bericht, final int status) {
+        new AlertDialog.Builder(RoomOverviewActivity.this)
+                .setTitle(titel)
+                .setMessage(bericht)
+                .setPositiveButton("Login", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(RoomOverviewActivity.this, LoginActivity.class);
+                        startActivity(intent);
+
+                    }
+                })
+                .setNegativeButton("Terug", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
                 })
                 .show();

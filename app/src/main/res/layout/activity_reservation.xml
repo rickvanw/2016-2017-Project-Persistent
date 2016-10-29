@@ -74,11 +74,11 @@
             android:layout_toEndOf="@+id/linearLayout"
             android:id="@+id/linearLayout2">
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="room nr"
-                android:id="@+id/etRoomName"
+                android:id="@+id/tvRoomName"
                 android:layout_marginTop="60dp"
                 android:textSize="30dp"
                 android:background="#E7E3D8"
@@ -135,16 +135,6 @@
         android:layout_alignParentEnd="false"
         android:background="#463928"
         android:textColor="#E7E3D8" />
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Verwijderen"
-            android:id="@+id/buttonDelete"
-            android:background="#463928"
-            android:textColor="#E7E3D8"
-            android:layout_alignTop="@+id/buttonReserve"
-            android:layout_alignEnd="@+id/etTimeStart" />
 
         <EditText
             android:layout_width="120dp"

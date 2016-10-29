@@ -6,69 +6,23 @@
     android:orientation="horizontal"
     tools:context="com.example.saxion.nl.projectpersistant.UserMenu"
     android:weightSum="2"
-    android:background="@drawable/login_wallpaper">>
+    android:background="@drawable/login_wallpaper"><![CDATA[>
+
+    ]]>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@color/ovblauw"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:weightSum="2"
-        android:layout_height="match_parent"
-        android:alpha="0.8">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:onClick="plaatsReservering">
-
-            <TextView
-                android:layout_width="400dp"
-                android:layout_height="80dp"
-                android:text="Reservering plaatsen"
-                android:id="@+id/US_reserveringplaatsen_tv"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textIsSelectable="false"
-                android:textSize="35dp"
-                android:background="#E7E3D8"
-                android:gravity="center" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:background="@color/ovgeel"
-            android:layout_height="0dp"
-            android:onClick="gaNaarMeldingen"
-            android:gravity="center">>
-
-            <TextView
-                android:layout_width="400dp"
-                android:layout_height="80dp"
-                android:text="Mijn Meldingen"
-                android:id="@+id/textView19"
-                android:textIsSelectable="false"
-                android:textSize="35dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:background="#E7E3D8"
-                android:gravity="center" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_weight="1"
         android:background="@color/ovrood"
         android:layout_height="match_parent"
         android:onClick="zoekRuimte"
         android:alpha="0.8">>
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_height="0dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_height="match_parent">
 
 
             <TextView
@@ -82,14 +36,14 @@
                 android:layout_alignParentStart="true"
                 android:background="#E7E3D8"
                 android:gravity="center" />
-        </RelativeLayout>
-        <RelativeLayout
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:background="@color/ovpaars"
             android:onClick="gaNaarOverzicht"
-            android:layout_height="0dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_height="match_parent">
             <TextView
                 android:layout_width="400dp"
                 android:layout_height="80dp"
@@ -101,6 +55,6 @@
                 android:layout_alignParentStart="true"
                 android:background="#E7E3D8"
                 android:gravity="center" />
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

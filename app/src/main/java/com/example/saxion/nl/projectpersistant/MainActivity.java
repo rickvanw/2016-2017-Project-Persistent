@@ -1,55 +1,53 @@
 package com.example.saxion.nl.projectpersistant;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
 public class MainActivity extends AppCompatActivity {
-    private AVLoadingIndicatorView avi;
-    private boolean stillLoading = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-//        startAnim();
-//        while(stillLoading){
-//
+        setContentView(R.layout.activity_main);        getSupportActionBar().hide();
 
-    public void launchLogin(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
+        Window window = this.getWindow();
 
-    private void startAnim(){
-   //     avi.show();
-    }
-//
-//    private void foutMetServer(){
-//        new BottomDialog.Builder(this)
-//                .setTitle("serverfout!")
-//                .setContent("App kan server niet bereiken. Probeer het later opnieuw")
-//                .setPositiveText("OK")
-//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-//                .setPositiveTextColorResource(android.R.color.white)
-//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-//                .onPositive(new BottomDialog.ButtonCallback() {
-//                    @Override
-//                    public void onClick(BottomDialog dialog) {
-//                        Log.d("BottomDialogs", "Do something!");
-//                    }
-//                }).show();
-//    }
+        // different status bar color
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // finally change the color
+        window.setStatusBarColor(Color.parseColor("#F9CA6B"));
 
+        LinearLayout llLogin = (LinearLayout)findViewById(R.id.llMainToLogin);
+        LinearLayout llRooms = (LinearLayout)findViewById(R.id.llMainToRooms);
 
+        llLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
-    private void hasInternetAcces(){
+        llRooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RoomOverviewActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
 }
